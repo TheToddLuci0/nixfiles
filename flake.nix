@@ -14,30 +14,59 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      homeConfigurations."notroot@desktop-nixos-vm" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+    in
+    {
+      homeConfigurations = {
+        "notroot@desktop-nixos-vm" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
 
-                #        imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+          # imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [
-          ./home-manager/desktop_vm_notroot/home.nix 
-          inputs.nixvim.homeManagerModules.nixvim
-        ];
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
+          modules = [
+            ./home-manager/desktop_vm_notroot/home.nix
+            inputs.nixvim.homeManagerModules.nixvim
+          ];
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+        };
+        "notroot@work-nixos" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
+          modules = [
+	    ./home-manager/work_notroot/home.nix
+            inputs.nixvim.homeManagerModules.nixvim
+	    ];
+
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+        };
       };
       nixosConfigurations = {
         "desktop-nixos-vm" = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ ./nixos/hosts/desktop-nixos-vm/configuration.nix ];
+        };
+        # Work nixos vm
+        "work-nixos" = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./nixos/hosts/work-nixos/configuration.nix
+          ];
         };
       };
     };
