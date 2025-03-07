@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
 
@@ -161,23 +166,72 @@
 
   programs.ssh = {
     enable = true;
-    matchBlocks = {
-      "aws-vpn" = {
-        hostname = "172.29.245.16";
-        user = "ubuntu";
-        identityFile = "$HOME/.ssh/etg_pt_01.pem";
-      };
-      "mantis-kali" = {
-        hostname = "172.29.249.128";
-        port = 2200;
-        identityFile = "$HOME/.ssh/id_rsa";
-      };
-      "mccracken" = {
-        hostname = "172.29.249.98";
-        user = "converge";
-        identityFile = "$HOME/.ssh/id_rsa";
-      };
-    };
+    includes = [
+      "~/.ssh/1Password/config"
+    ];
+    extraConfig = ''
+      IdentityAgent ~/.1password/agent.sock
+    '';
+    matchBlocks =
+      lib.trivial.mergeAttrs
+        (lib.trivial.mergeAttrs
+          # This magic generates the SSH config entries for each of the MANTIS devices. It's a bit ugly, but since I'll never have to edit my hosts file directly, I don't care.
+          (builtins.listToAttrs (
+            builtins.genList (x: {
+              name = "mantis-${toString x}";
+              value = {
+                user = "converge";
+                hostname = "172.29.249.1${toString x}";
+              };
+            }) 50
+          ))
+          (
+            builtins.listToAttrs (
+              builtins.genList (x: {
+                name = "mantis-kali-${toString x}";
+                value = {
+                  user = "converge";
+                  port = 2200;
+                  hostname = "172.29.249.1${toString x}";
+                };
+              }) 50
+            )
+          )
+        )
+        # non-generated SSH configs go here
+        {
+          "aws-vpn" = {
+            hostname = "172.29.245.16";
+            user = "ubuntu";
+            # identityFile = "$HOME/.ssh/etg_pt_01.pem";
+          };
+          "mantis-kali" = {
+            hostname = "172.29.249.128";
+            port = 2200;
+            # identityFile = "$HOME/.ssh/id_rsa";
+          };
+          "mccracken" = {
+            hostname = "172.29.249.98";
+            user = "converge";
+            # identityFile = "$HOME/.ssh/id_rsa";
+          };
+          "controller" = {
+            user = "lwoolery";
+            hostname = "172.29.246.221";
+          };
+          "nessis" = {
+            user = "ec2-user";
+            hostname = "172.29.246.158";
+          };
+          "aws-cracker" = {
+            user = "ubuntu";
+            hostname = "172.29.246.222";
+          };
+          "recon-heavy" = {
+            user = "kali";
+            hostname = "172.29.246.58";
+          };
+        };
   };
 
   # VPN Magic
