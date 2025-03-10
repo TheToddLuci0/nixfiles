@@ -238,6 +238,9 @@
             user = "kali";
             hostname = "172.29.246.58";
           };
+          "github.com" = {
+            identityFile = "~/.ssh/id_rsa.pub";
+          };
         };
   };
 
