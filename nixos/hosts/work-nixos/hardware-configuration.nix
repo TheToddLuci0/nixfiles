@@ -21,7 +21,7 @@
   fileSystems."/mnt/hgfs" = {
     device = ".host:/client";
     fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
-    options = ["umask=22" "uid=1000" "gid=100" "allow_other" "defaults" "auto_unmount"];
+    options = ["umask=22" "uid=1000" "nofail" "gid=100" "allow_other" "defaults" "auto_unmount"];
   };
 
   swapDevices = [ ];
