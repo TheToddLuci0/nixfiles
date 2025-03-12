@@ -12,6 +12,7 @@
       url = "github:nix-community/nixvim/nixos-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs =
@@ -67,6 +68,12 @@
           modules = [
             ./nixos/hosts/work-nixos/configuration.nix
           ];
+          specialArgs = {
+            pkgs-unstable = import inputs.nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          };
         };
       };
     };

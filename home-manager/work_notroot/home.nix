@@ -10,12 +10,14 @@
   imports = [
     ../neovim.nix
     ../hypr.nix
+    ../modules
   ];
 
   nixpkgs.overlays = [
     (import ../../packages)
-  ]
-  ;
+  ];
+
+  programs.zsh.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -60,8 +62,10 @@
     # Pinentry for gnome
     gcr
 
-    keeperpasswordmanager 
-
+    keeperpasswordmanager
+    # Pipx and magic shell completions
+    python312Packages.argcomplete
+    pipx
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -109,6 +113,18 @@
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
       };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        name = "Flameshot";
+        command = "flameshot gui";
+        binding = "Print";
+      };
+      "org/gnome/shell" = {
+        favorite-apps = [
+          "firefox.desktop"
+          "org.gnome.Nautilus.desktop"
+          "obsidian.desktop"
+        ];
+      };
     };
   };
 
@@ -120,15 +136,11 @@
     };
 
     gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+      gtk-application-prefer-dark-theme = 1;
     };
 
     gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+      gtk-application-prefer-dark-theme = 1;
     };
 
   };
@@ -278,5 +290,8 @@
       };
     };
   };
+
+  # Reporting
+  services.flameshot.enable = true;
 
 }

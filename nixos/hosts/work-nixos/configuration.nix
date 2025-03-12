@@ -10,7 +10,13 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../window-managers/default.nix
+      ../../roles
     ];
+
+  # Enable custom roles
+  ttl0.roles = {
+    pentest.enable = true;
+  };
 
   # Tell nixos that we're on a vmware vm
   virtualisation.vmware.guest.enable = true;
@@ -194,7 +200,9 @@
   programs.openvpn3 = {
     enable = true;
     # This should set it to nothing. Without this explicit cast, the vpn won't work
-    netcfg.settings = {};
+    netcfg.settings = {
+      log_level = 4;
+    };
   };
   # services.openvpn.servers = {
   
@@ -208,5 +216,8 @@
   # Password Managers
   programs._1password.enable = true;
   programs._1password-gui.enable = true;
+
+  # needed for ZSH autocomplete to work propperly
+  environment.pathsToLink = [ "/share/zsh" ];
 
 }
