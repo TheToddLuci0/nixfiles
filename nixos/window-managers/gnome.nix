@@ -18,6 +18,9 @@ in
     environment.systemPackages = with pkgs; [
       gnomeExtensions.appindicator
     ];
+
+    services.udev.packages = [ pkgs.gnome-settings-daemon ];
+
     # from autogen configuration.nix
 
     # Enable the X11 windowing system

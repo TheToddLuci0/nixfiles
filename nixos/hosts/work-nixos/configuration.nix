@@ -123,6 +123,7 @@
     nixfmt-rfc-style
     python314Full
     gh
+    usbutils
   ];
 
 #  services.udev.packages = with pkgs; [
@@ -219,5 +220,29 @@
 
   # needed for ZSH autocomplete to work propperly
   environment.pathsToLink = [ "/share/zsh" ];
+
+  # Yubikey
+  security.pam.u2f.settings.cue = true; # Show a reminder
+  security.pam.services = {
+    sudo.u2fAuth = true;
+  };
+
+  # First one is the AWS yubikey clone
+  # Second one is the OnlyKey
+  services.udev.extraRules = ''
+      ACTION=="remove",\
+       ENV{ID_BUS}=="usb",\
+       ENV{ID_MODEL_ID}=="0417",\
+       ENV{ID_VENDOR_ID}=="1949",\
+       ENV{ID_VENDOR}=="Amazon",\
+       RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+
+      ACTION=="remove",\
+       ENV{ID_BUS}=="usb",\
+       ENV{ID_MODEL_ID}=="60fc",\
+       ENV{ID_VENDOR_ID}=="1d50",\
+       ENV{ID_VENDOR}=="CRYPTOTRUST",\
+       RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+  '';
 
 }
