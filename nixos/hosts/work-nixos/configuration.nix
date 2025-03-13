@@ -217,13 +217,16 @@
   # Password Managers
   programs._1password.enable = true;
   programs._1password-gui.enable = true;
+  programs._1password-gui.polkitPolicyOwners = ["notroot"];
 
   # needed for ZSH autocomplete to work propperly
   environment.pathsToLink = [ "/share/zsh" ];
 
   # Yubikey
   security.pam.u2f.settings.cue = true; # Show a reminder
+  security.pam.u2f.enable = true;
   security.pam.services = {
+    login.u2fAuth = true;
     sudo.u2fAuth = true;
   };
 
@@ -244,5 +247,40 @@
        ENV{ID_VENDOR}=="CRYPTOTRUST",\
        RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   '';
+
+
+  #DNS
+  networking = {
+    nameservers = [ "127.0.0.1" "::1" ];
+    # If using dhcpcd:
+    # dhcpcd.extraConfig = "nohook resolv.conf";
+  };
+  # # If using NetworkManager:
+  networking.networkmanager.dns = "none";
+  # DNSSEC / DNSCrypt / DoH
+  services.dnscrypt-proxy2 = {
+    enable = true;
+    # Settings reference:
+    # https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
+    settings = {
+      # ipv6_servers = true;
+      require_dnssec = true;
+      require_nolog = true;
+      require_nofilter = true;
+      # Add this to test if dnscrypt-proxy is actually used to resolve DNS requests
+      # query_log.file = "/var/log/dnscrypt-proxy/query.log";
+      sources.public-resolvers = {
+        urls = [
+          "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+          "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+        ];
+        cache_file = "/var/cache/dnscrypt-proxy/public-resolvers.md";
+        minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+      };
+
+      # You can choose a specific set of servers from https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
+      # server_names = [ ... ];
+    };
+  };
 
 }

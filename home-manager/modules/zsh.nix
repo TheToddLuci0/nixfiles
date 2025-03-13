@@ -21,8 +21,12 @@
         la = "ls -A";
         grep = "grep --color=auto";
         diff = "diff --color=auto";
+        open = "xdg-open";
       };
       initExtra = ''
+      # 1password
+      eval "$(op completion zsh)"; compdef _op op
+
       # pipx
       export PATH="$PATH:/home/notroot/.local/bin"
       eval "$(register-python-argcomplete pipx)"

@@ -125,13 +125,19 @@
           "obsidian.desktop"
         ];
       };
+      "org/gnome/desktop/interface" = {
+        clock-format = "12h";
+      };
+      "org/gtk/settings/file-chooser" = {
+        clock-format = "12h";
+      };
     };
   };
 
   gtk = {
     enable = true;
     theme = {
-      name = "tokyonight-dark";
+      name = "Tokyonight-Dark-hdpi";
       package = pkgs.tokyonight-gtk-theme;
     };
 
@@ -227,16 +233,17 @@
           "mantis-kali" = {
             hostname = "172.29.249.128";
             port = 2200;
-            # identityFile = "$HOME/.ssh/id_rsa";
+            identityFile = "/home/notroot/.ssh/id_rsa.pub";
           };
           "mccracken" = {
             hostname = "172.29.249.98";
             user = "converge";
-            # identityFile = "$HOME/.ssh/id_rsa";
+            identityFile = "/home/notroot/.ssh/id_rsa.pub";
           };
           "controller" = {
             user = "lwoolery";
             hostname = "172.29.246.221";
+            identityFile = "/home/notroot/.ssh/id_rsa.pub";
           };
           "nessis" = {
             user = "ec2-user";
