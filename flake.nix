@@ -13,18 +13,25 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
+      home-manager-unstable,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in
     {
       homeConfigurations = {
@@ -43,8 +50,9 @@
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
         };
-        "notroot@work-nixos" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+        "notroot@work-nixos" = home-manager-unstable.lib.homeManagerConfiguration {
+          # inherit pkgs;
+          pkgs = pkgs-unstable;
 
           # Specify your home configuration modules here, for example,
           # the path to your home.nix.
@@ -63,17 +71,17 @@
           modules = [ ./nixos/hosts/desktop-nixos-vm/configuration.nix ];
         };
         # Work nixos vm
-        "work-nixos" = nixpkgs.lib.nixosSystem {
+        "work-nixos" = nixpkgs-unstable.lib.nixosSystem {
           inherit system;
           modules = [
             ./nixos/hosts/work-nixos/configuration.nix
           ];
-          specialArgs = {
-            pkgs-unstable = import inputs.nixpkgs-unstable {
-              inherit system;
-              config.allowUnfree = true;
-            };
-          };
+          # specialArgs = {
+          #   pkgs-unstable = import inputs.nixpkgs-unstable {
+          #     inherit system;
+          #     config.allowUnfree = true;
+          #   };
+          # };
         };
       };
     };

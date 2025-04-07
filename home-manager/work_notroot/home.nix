@@ -167,7 +167,9 @@
 
   programs.vscode = {
     enable = true;
-    extensions = [ pkgs.vscode-extensions.jnoortheen.nix-ide ];
+    profiles.default = {
+      extensions = [ pkgs.vscode-extensions.jnoortheen.nix-ide ];
+    };
   };
 
   programs.gpg.enable = true;
@@ -207,8 +209,9 @@
               value = {
                 user = "converge";
                 hostname = "172.29.249.1${toString x}";
+                identityFile = "/home/notroot/.ssh/id_rsa.pub";
               };
-            }) 50
+            }) 60
           ))
           (
             builtins.listToAttrs (
@@ -218,8 +221,9 @@
                   user = "converge";
                   port = 2200;
                   hostname = "172.29.249.1${toString x}";
+                  identityFile = "/home/notroot/.ssh/id_rsa.pub";
                 };
-              }) 50
+              }) 60
             )
           )
         )
