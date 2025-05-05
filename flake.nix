@@ -17,6 +17,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    stylix-unstable.url = "github:danth/stylix";
   };
 
   outputs =
@@ -57,9 +58,10 @@
           # Specify your home configuration modules here, for example,
           # the path to your home.nix.
           modules = [
-	    ./home-manager/work_notroot/home.nix
+            ./home-manager/work_notroot/home.nix
+            inputs.stylix-unstable.homeManagerModules.stylix
             inputs.nixvim.homeManagerModules.nixvim
-	    ];
+          ];
 
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix

@@ -110,9 +110,9 @@
   dconf = {
     enable = true;
     settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
+      # "org/gnome/desktop/interface" = {
+      #   color-scheme = "prefer-dark";
+      # };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         name = "Flameshot";
         command = "flameshot gui";
@@ -134,23 +134,23 @@
     };
   };
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Tokyonight-Dark-hdpi";
-      package = pkgs.tokyonight-gtk-theme;
-    };
+  # gtk = {
+  #   enable = true;
+  #   theme = {
+  #     name = "Tokyonight-Dark-hdpi";
+  #     package = pkgs.tokyonight-gtk-theme;
+  #   };
 
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+  #   gtk3.extraConfig = {
+  #     gtk-application-prefer-dark-theme = 1;
+  #   };
 
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+  #   gtk4.extraConfig = {
+  #     gtk-application-prefer-dark-theme = 1;
+  #   };
 
-  };
-  home.sessionVariables.GTK_THEME = "tokyonight-dark";
+  # };
+  # home.sessionVariables.GTK_THEME = "tokyonight-dark";
 
   programs.git = {
     enable = true;
@@ -186,7 +186,7 @@
 
   services.gpg-agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
     enableBashIntegration = true;
     enableZshIntegration = true;
   };
@@ -299,8 +299,16 @@
         sso_role_name = "AWSAdministratorAccess";
         region = "us-east-1";
       };
+      "profile pentest-svc" = {
+        sso_session = "cbi-sso";
+        sso_account_id = "990510373894";
+        sso_role_name = "RedTeamAdministratorAccess";
+        region = "us-east-1";
+      };
     };
   };
+
+  programs.kitty.enable = true;
 
   # Reporting
   services.flameshot.enable = true;
