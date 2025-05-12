@@ -210,6 +210,7 @@
                 user = "converge";
                 hostname = "172.29.249.1${toString x}";
                 identityFile = "/home/notroot/.ssh/id_rsa.pub";
+                identitiesOnly = true;
               };
             }) 60
           ))
@@ -222,6 +223,7 @@
                   port = 2200;
                   hostname = "172.29.249.1${toString x}";
                   identityFile = "/home/notroot/.ssh/id_rsa.pub";
+                  identitiesOnly = true;
                 };
               }) 60
             )
@@ -263,6 +265,10 @@
           };
           "github.com" = {
             identityFile = "~/.ssh/id_rsa.pub";
+            extraOptions = {
+              ControlMaster = "auto";
+              ControlPersist = "10m";
+            };
           };
         };
   };
