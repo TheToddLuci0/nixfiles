@@ -7,6 +7,7 @@
 
 {
   config = lib.mkIf config.programs.zsh.enable {
+    
     programs.zsh = {
       enableCompletion = true;
       autocd = true;
@@ -23,7 +24,7 @@
         diff = "diff --color=auto";
         open = "xdg-open";
       };
-      initExtra = ''
+      initContent = ''
       # 1password
       eval "$(op completion zsh)"; compdef _op op
 
@@ -46,6 +47,20 @@
       bindkey '^[[Z' undo                               # shift + tab undo last action
 
       '';
+      oh-my-zsh = {
+        theme = "rkj-repos";
+        enable = true;
+        plugins = [
+          "git"
+          "1password"
+          "aws"
+          "colored-man-pages"
+          "colorize"
+          "command-not-found"
+          "docker"
+          "man"
+        ];
+      };
     };
   };
 }
