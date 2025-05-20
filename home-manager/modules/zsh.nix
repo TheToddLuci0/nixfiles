@@ -7,7 +7,11 @@
 
 {
   config = lib.mkIf config.programs.zsh.enable {
-    
+
+    home.packages = with pkgs; [
+        zsh-nix-shell
+    ];
+
     programs.zsh = {
       enableCompletion = true;
       autocd = true;
@@ -46,11 +50,15 @@
       bindkey '^[[F' end-of-line                        # end
       bindkey '^[[Z' undo                               # shift + tab undo last action
 
+      # Load nix things
+      source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
+
       '';
       oh-my-zsh = {
         theme = "rkj-repos";
         enable = true;
         plugins = [
+          "zsh-nix-shell"
           "git"
           "1password"
           "aws"

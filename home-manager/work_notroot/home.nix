@@ -304,6 +304,8 @@
         sso_account_id = "641971825827";
         sso_role_name = "AWSAdministratorAccess";
         region = "us-east-1";
+        cli_pager = "";
+        cli_auto_prompt = "on-partial";
       };
       "profile pentest-svc" = {
         sso_session = "cbi-sso";
