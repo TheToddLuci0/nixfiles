@@ -58,7 +58,7 @@
         theme = "rkj-repos";
         enable = true;
         plugins = [
-          "zsh-nix-shell"
+#          "zsh-nix-shell"
           "git"
           "1password"
           "aws"
