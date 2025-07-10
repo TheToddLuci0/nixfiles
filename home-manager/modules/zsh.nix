@@ -55,7 +55,8 @@
 
       '';
       oh-my-zsh = {
-        theme = "rkj-repos";
+        theme = "custom-rkj-repos";
+        custom = "$HOME/.config/zsh-custom";
         enable = true;
         plugins = [
 #          "zsh-nix-shell"
@@ -69,6 +70,11 @@
           "man"
         ];
       };
+    };
+    
+    home.file.".config/zsh-custom" = {
+        enable = true;
+        source = ../assets/oh-my-zsh ;
     };
   };
 }
