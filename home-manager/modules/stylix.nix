@@ -17,5 +17,7 @@
     autoEnable = true;
     polarity = "dark";
     targets.vscode.enable = false;
+    # Wallpaper
+    image = ../assets/wallpaper.png;
   };
 }

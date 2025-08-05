@@ -15,8 +15,10 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    environment.systemPackages = with pkgs; [
-      gnomeExtensions.appindicator
+    environment.systemPackages = with pkgs.gnomeExtensions; [
+      appindicator
+      extension-list
+      system-monitor-next
     ];
 
     services.udev.packages = [ pkgs.gnome-settings-daemon ];
@@ -27,8 +29,8 @@ in
     services.xserver.enable = true;
 
     # Enable the GNOME Desktop Environment.
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
+    services.displayManager.gdm.enable = true;
+    services.desktopManager.gnome.enable = true;
 
 # Debug GDM
 #    services.xserver.displayManager.gdm.debug = true;
@@ -77,6 +79,12 @@ in
       # gnome-user-share-47.2
       # gnome-weather-47.0
     ]);
+    services.gnome = {
+      # Disable "core services" that are not, in fact, core
+      gnome-online-accounts.enable = false;
+    };
+    # gnome email client
+    programs.geary.enable = false;
   };
 
 }

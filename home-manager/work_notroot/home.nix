@@ -67,6 +67,10 @@
     # Pipx and magic shell completions
     python312Packages.argcomplete
     pipx
+
+    # gnome shell
+    gnomeExtensions.extension-list
+    gnomeExtensions.system-monitor-next
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -124,6 +128,15 @@
           "firefox.desktop"
           "org.gnome.Nautilus.desktop"
           "obsidian.desktop"
+        ];
+        # https://wiki.nixos.org/wiki/GNOME#Extensions
+        disable-user-extensions = false;
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          appindicator.extensionUuid
+          extension-list.extensionUuid
+          system-monitor-next.extensionUuid
+          # Stylix
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
         ];
       };
       "org/gnome/desktop/interface" = {
@@ -209,7 +222,8 @@
               name = "mantis-${toString x}";
               value = {
                 user = "converge";
-                hostname = "172.29.249.1${toString x}";
+                #hostname = "172.29.249.1${toString x}";
+                hostname = "0${toString x}.mantisops.com";
                 identityFile = "/home/notroot/.ssh/id_rsa.pub";
                 identitiesOnly = true;
               };
@@ -222,7 +236,8 @@
                 value = {
                   user = "converge";
                   port = 2200;
-                  hostname = "172.29.249.1${toString x}";
+                  #hostname = "172.29.249.1${toString x}";
+                  hostname = "0${toString x}.mantisops.com";
                   identityFile = "/home/notroot/.ssh/id_rsa.pub";
                   identitiesOnly = true;
                 };

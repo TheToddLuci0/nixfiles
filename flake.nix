@@ -59,7 +59,7 @@
           # the path to your home.nix.
           modules = [
             ./home-manager/work_notroot/home.nix
-            inputs.stylix-unstable.homeManagerModules.stylix
+            inputs.stylix-unstable.homeModules.stylix
             inputs.nixvim.homeManagerModules.nixvim
           ];
 
