@@ -227,7 +227,7 @@
                 identityFile = "/home/notroot/.ssh/id_rsa.pub";
                 identitiesOnly = true;
               };
-            }) 60
+            }) 70
           ))
           (
             builtins.listToAttrs (
@@ -241,7 +241,7 @@
                   identityFile = "/home/notroot/.ssh/id_rsa.pub";
                   identitiesOnly = true;
                 };
-              }) 60
+              }) 70
             )
           )
         )
@@ -267,7 +267,7 @@
             hostname = "172.29.246.221";
             identityFile = "/home/notroot/.ssh/id_rsa.pub";
           };
-          "nessis" = {
+          "nessus" = {
             user = "ec2-user";
             hostname = "172.29.246.158";
           };
