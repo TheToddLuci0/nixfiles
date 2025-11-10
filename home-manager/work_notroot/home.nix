@@ -168,11 +168,11 @@
 
   programs.git = {
     enable = true;
-    userName = "TheToddLuci0";
-    userEmail = "26094248+TheToddLuci0@users.noreply.github.com";
     signing.key = "87FAEE526515AA13B02589579C29A212F5B2F101";
     signing.signByDefault = true;
-    extraConfig = {
+    settings = {
+      user.namw = "TheToddLuci0";
+      user.email = "26094248+TheToddLuci0@users.noreply.github.com";
       push = {
         autoSetupRemote = true;
       };
@@ -267,9 +267,13 @@
             hostname = "172.29.246.221";
             identityFile = "/home/notroot/.ssh/id_rsa.pub";
           };
-          "nessus" = {
+          "old-nessus" = {
             user = "ec2-user";
             hostname = "172.29.246.158";
+          };
+          "nessus" = {
+            user = "ubuntu";
+            hostname = "172.29.246.230";
           };
           "aws-cracker" = {
             user = "ubuntu";
