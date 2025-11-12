@@ -341,4 +341,6 @@
   # Reporting
   services.flameshot.enable = true;
 
+  # Tailscale
+  services.tailscale-systray.enable = true;
 }

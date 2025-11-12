@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -18,6 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     stylix-unstable.url = "github:danth/stylix";
+    nixvim-unstable = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
@@ -60,7 +64,7 @@
           modules = [
             ./home-manager/work_notroot/home.nix
             inputs.stylix-unstable.homeModules.stylix
-            inputs.nixvim.homeManagerModules.nixvim
+            inputs.nixvim-unstable.homeManagerModules.nixvim
           ];
 
           # Optionally use extraSpecialArgs

@@ -41,15 +41,19 @@
       # Automatically enabled by telescope, but doesn't work without a system nerd font. 
       # TODO: Make dynamic
       web-devicons.enable = false;
-      lsp = {
-        enable = true;
-        servers = {
-          lua_ls = {
-            enable = true;
-            settings.telemetry.enable = false;
-          };
-          nixd.enable = true;
+      # Default friendly lsp configs
+      lspconfig.enable = true;
+    };
+
+    # Syntax highlighting
+    lsp = {
+#      enable = true;
+      servers = {
+        lua_ls = {
+          enable = true;
+          config.telemetry.enable = false;
         };
+        nixd.enable = true;
       };
     };
 

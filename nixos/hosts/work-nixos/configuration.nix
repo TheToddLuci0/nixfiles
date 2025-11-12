@@ -95,7 +95,7 @@
   users.users.notroot = {
     isNormalUser = true;
     description = "Test Haxor";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "docker"];
     packages = with pkgs; [
     #  thunderbird
     ];
