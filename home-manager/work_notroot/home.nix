@@ -171,12 +171,19 @@
     signing.key = "87FAEE526515AA13B02589579C29A212F5B2F101";
     signing.signByDefault = true;
     settings = {
+      core.excludesfile = "~/.gitignore_global";
       user.namw = "TheToddLuci0";
       user.email = "26094248+TheToddLuci0@users.noreply.github.com";
       push = {
         autoSetupRemote = true;
       };
     };
+  };
+
+  home.file.".gitignore_global" = {
+    text = "# Direnv stuff
+            .direnv
+            .envrc";
   };
 
   programs.vscode = {
@@ -207,6 +214,7 @@
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false; # The defaults are deprecated. Remove and prevent warnings
     includes = [
       "~/.ssh/1Password/config"
     ];
@@ -247,6 +255,7 @@
         )
         # non-generated SSH configs go here
         {
+          "*" = {}; # Hack
           "aws-vpn" = {
             hostname = "172.29.245.16";
             user = "ubuntu";
@@ -335,6 +344,12 @@
       };
     };
   };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+  programs.direnv-instant.enable = true;
 
   programs.kitty.enable = true;
 

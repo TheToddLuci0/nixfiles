@@ -22,6 +22,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    direnv-instant-unstable = {
+      url = "github:Mic92/direnv-instant";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
@@ -64,7 +68,8 @@
           modules = [
             ./home-manager/work_notroot/home.nix
             inputs.stylix-unstable.homeModules.stylix
-            inputs.nixvim-unstable.homeManagerModules.nixvim
+            inputs.nixvim-unstable.homeModules.nixvim
+            inputs.direnv-instant-unstable.homeModules.direnv-instant
           ];
 
           # Optionally use extraSpecialArgs
