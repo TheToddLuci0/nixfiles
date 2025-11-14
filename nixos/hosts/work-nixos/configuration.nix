@@ -124,6 +124,7 @@
     python3
     gh
     usbutils
+    protonvpn-gui
   ];
 
 #  services.udev.packages = with pkgs; [

@@ -181,9 +181,11 @@
   };
 
   home.file.".gitignore_global" = {
-    text = "# Direnv stuff
-            .direnv
-            .envrc";
+    text = ''
+        # Direnv stuff
+        .direnv
+        .envrc
+    '';
   };
 
   programs.vscode = {
