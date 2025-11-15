@@ -26,6 +26,7 @@
       url = "github:Mic92/direnv-instant";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs =
@@ -75,6 +76,16 @@
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
         };
+        "notroot@spaghetti-llc" = home-manager-unstable.lib.homeManagerConfiguration {
+          #inherit pkgs;
+          pkgs = pkgs-unstable;
+          modules = [
+            ./home-manager/spaghetti-llc_notroot/home.nix
+            inputs.stylix-unstable.homeModules.stylix
+            inputs.nixvim-unstable.homeModules.nixvim
+            inputs.direnv-instant-unstable.homeModules.direnv-instant
+          ];
+        };
       };
       nixosConfigurations = {
         "desktop-nixos-vm" = nixpkgs.lib.nixosSystem {
@@ -93,6 +104,17 @@
           #     config.allowUnfree = true;
           #   };
           # };
+        };
+
+        # Laptop 1
+        "spaghetti-llc" = nixpkgs-unstable.lib.nixosSystem {
+          inherit system;
+          # specialArgs = { inherit inputs; };
+          modules = [
+            ./nixos/hosts/spaghetti-llc/configuration.nix
+            # Known-good configs for laptops
+            inputs.nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
+          ];
         };
       };
     };
