@@ -8,7 +8,7 @@
 {
 
   imports = [
-    ../neovim.nix
+    # ../neovim.nix
     ../hypr.nix
     ../modules
   ];
@@ -17,7 +17,19 @@
     (import ../../packages)
   ];
 
-  programs.zsh.enable = true;
+  # programs.zsh.enable = true;
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting # Disable welcome message
+    '';
+    plugins = [
+      {name = "grc"; src = pkgs.fishPlugins.grc.src;} # Colorized command output
+      {name = "bang-bang"; src = pkgs.fishPlugins.bang-bang.src; } # Let me !$ damnit
+      {name = "colorized-man-pages"; src = pkgs.fishPlugins.colored-man-pages.src; } # Pretty man ;)
+    ];
+  };
+  programs.starship.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -62,8 +74,6 @@
     # Pinentry for gnome
     gcr
 
-    keeperpasswordmanager
-    keepercommander
     # Pipx and magic shell completions
     python312Packages.argcomplete
     pipx
@@ -72,6 +82,10 @@
     # gnome shell
     gnomeExtensions.extension-list
     gnomeExtensions.system-monitor-next
+    gmetronome
+
+    zellij
+    protonvpn-gui
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -149,19 +163,19 @@
     };
   };
 
-#  programs.git = {
-#    enable = true;
-#    signing.key = "87FAEE526515AA13B02589579C29A212F5B2F101";
-#    signing.signByDefault = true;
-#    settings = {
-#      core.excludesfile = "~/.gitignore_global";
-#      user.namw = "TheToddLuci0";
-#      user.email = "26094248+TheToddLuci0@users.noreply.github.com";
-#      push = {
-#        autoSetupRemote = true;
-#      };
-#    };
-#  };
+ programs.git = {
+   enable = true;
+   signing.key = "";
+   signing.signByDefault = true;
+   settings = {
+     core.excludesfile = "~/.gitignore_global";
+     user.name = "E26D48B308C7C1C39CD3C3E686B35D9789EBE4A5";
+     user.email = "thetoddluci0@pm.me";
+     push = {
+       autoSetupRemote = true;
+     };
+   };
+ };
 
   home.file.".gitignore_global" = {
     text = "# Direnv stuff
@@ -176,6 +190,7 @@
     };
   };
 
+  programs.gpg.enable = true;
   programs.gpg.publicKeys = [
     {
       source = ../assets/gpg/work_pubkey.gpg;
@@ -198,9 +213,4 @@
 
   programs.kitty.enable = true;
 
-  # Reporting
-  services.flameshot.enable = true;
-
-  # Tailscale
-  services.tailscale-systray.enable = true;
 }

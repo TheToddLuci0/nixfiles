@@ -4,5 +4,6 @@
     ./dev.nix
     ./pentest.nix
     ./gaming.nix
+    ./core.nix
   ];
 }

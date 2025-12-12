@@ -8,114 +8,135 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+#    nixvim = {
+#      url = "github:nix-community/nixvim";
+#      inputs.nixpkgs.follows = "nixpkgs";
+#    };
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager-unstable = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     stylix-unstable.url = "github:danth/stylix";
-    nixvim-unstable = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+#    nixvim-unstable = {
+#      url = "github:nix-community/nixvim";
+#      inputs.nixpkgs.follows = "nixpkgs-unstable";
+#    };
     direnv-instant-unstable = {
       url = "github:Mic92/direnv-instant";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    nixos-rocksmith = {
+      url = "github:re1n0/nixos-rocksmith";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      home-manager,
-      home-manager-unstable,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-    in
-    {
-      homeConfigurations = {
-        "notroot@desktop-nixos-vm" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    home-manager,
+    home-manager-unstable,
+    nvf,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+  in {
+#    packages.${system}.ttl0-nvim =
+#      (
+#        nvf.lib.neovimConfiguration {
+#          pkgs = nixpkgs.legacyPackages.${system};
+#          modules = [./modules/nvf.nix];
+#        }
+#      ).neovim;
+    homeConfigurations = {
+      "notroot@desktop-nixos-vm" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
 
-          # imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+        # imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
-          modules = [
-            ./home-manager/desktop_vm_notroot/home.nix
-            inputs.nixvim.homeManagerModules.nixvim
-          ];
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [
+          ./home-manager/desktop_vm_notroot/home.nix
+#          inputs.nixvim.homeManagerModules.nixvim
+        ];
 
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
-        };
-        "notroot@work-nixos" = home-manager-unstable.lib.homeManagerConfiguration {
-          # inherit pkgs;
-          pkgs = pkgs-unstable;
-
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
-          modules = [
-            ./home-manager/work_notroot/home.nix
-            inputs.stylix-unstable.homeModules.stylix
-            inputs.nixvim-unstable.homeModules.nixvim
-            inputs.direnv-instant-unstable.homeModules.direnv-instant
-          ];
-
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
-        };
-        "notroot@spaghetti-llc" = home-manager-unstable.lib.homeManagerConfiguration {
-          #inherit pkgs;
-          pkgs = pkgs-unstable;
-          modules = [
-            ./home-manager/spaghetti-llc_notroot/home.nix
-            inputs.stylix-unstable.homeModules.stylix
-            inputs.nixvim-unstable.homeModules.nixvim
-            inputs.direnv-instant-unstable.homeModules.direnv-instant
-          ];
-        };
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
       };
-      nixosConfigurations = {
-        "desktop-nixos-vm" = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./nixos/hosts/desktop-nixos-vm/configuration.nix ];
-        };
-        # Work nixos vm
-        "work-nixos" = nixpkgs-unstable.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./nixos/hosts/work-nixos/configuration.nix
-          ];
-          # specialArgs = {
-          #   pkgs-unstable = import inputs.nixpkgs-unstable {
-          #     inherit system;
-          #     config.allowUnfree = true;
-          #   };
-          # };
-        };
+      "notroot@work-nixos" = home-manager-unstable.lib.homeManagerConfiguration {
+        # inherit pkgs;
+        pkgs = pkgs-unstable;
 
-        # Laptop 1
-        "spaghetti-llc" = nixpkgs-unstable.lib.nixosSystem {
-          inherit system;
-          # specialArgs = { inherit inputs; };
-          modules = [
-            ./nixos/hosts/spaghetti-llc/configuration.nix
-            # Known-good configs for laptops
-            inputs.nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
-          ];
-        };
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [
+          ./home-manager/work_notroot/home.nix
+          inputs.stylix-unstable.homeModules.stylix
+          inputs.nixvim-unstable.homeModules.nixvim
+          inputs.direnv-instant-unstable.homeModules.direnv-instant
+        ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+      };
+      "notroot@spaghetti-llc" = home-manager-unstable.lib.homeManagerConfiguration {
+        #inherit pkgs;
+        pkgs = pkgs-unstable;
+        modules = [
+          inputs.nvf.homeManagerModules.default
+          ./home-manager/spaghetti-llc_notroot/home.nix
+          inputs.stylix-unstable.homeModules.stylix
+#          inputs.nixvim-unstable.homeModules.nixvim
+          inputs.direnv-instant-unstable.homeModules.direnv-instant
+        ];
       };
     };
+    nixosConfigurations = {
+      "desktop-nixos-vm" = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [./nixos/hosts/desktop-nixos-vm/configuration.nix];
+      };
+      # Work nixos vm
+      "work-nixos" = nixpkgs-unstable.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./nixos/hosts/work-nixos/configuration.nix
+        ];
+        # specialArgs = {
+        #   pkgs-unstable = import inputs.nixpkgs-unstable {
+        #     inherit system;
+        #     config.allowUnfree = true;
+        #   };
+        # };
+      };
+
+      # Laptop 1
+      "spaghetti-llc" = nixpkgs-unstable.lib.nixosSystem {
+        inherit system;
+        # specialArgs = { inherit inputs; };
+        modules = [
+          ./nixos/hosts/spaghetti-llc/configuration.nix
+          # Known-good configs for laptops
+          inputs.nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
+          inputs.nixos-rocksmith.nixosModules.default
+
+#          #Hacky nvf
+#          ({pkgs, ...}: {
+#            environment.systemPackages = [self.packages.${pkgs.stdenv.system}.ttl0-nvim];
+#          })
+
+        ];
+      };
+    };
+  };
 }

@@ -88,7 +88,8 @@
   users.users.notroot = {
     isNormalUser = true;
     description = "notroot";
-    extraGroups = [ "networkmanager" "wheel" "audio" "gamemode"];
+    extraGroups = [ "networkmanager" "wheel" "audio" "gamemode" "rtkit" "docker" ];
+    shell = pkgs.fish;
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -114,6 +115,7 @@
     wget
     # onlykey-agent
     onlykey
+    protonvpn-gui
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -163,12 +165,16 @@
 
   # ZSH over BASH
   programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh bash ];
+  programs.fish.enable = true;
+  # https://wiki.nixos.org/wiki/Command_Shell#Using_Flakes
+  programs.command-not-found.enable = false; 
+  users.defaultUserShell = pkgs.fish;
+  environment.shells = with pkgs; [ fish zsh bash ];
 
   # Enable custom roles
   ttl0.roles = {
     gaming.enable = true;
+    dev.enable = true;
   };
 
   programs.nh = {
@@ -179,5 +185,13 @@
   # nix.nixPath = [ "/home/notroot/git/nixfiles/" ];
 
   hardware.onlykey.enable = true;
+
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
 
 }

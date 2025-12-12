@@ -13,6 +13,8 @@ in
       python3
       git
       gnumake
+      rustup
+      gcc
 
     ];
   };
