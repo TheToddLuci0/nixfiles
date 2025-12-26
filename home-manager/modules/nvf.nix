@@ -23,12 +23,6 @@
           fzf
           gcc
         ];
-        # Handled by stylix
-        #        theme = {
-        #          enable = true;
-        #          name = "onedark";
-        #          style = "dark";
-        #        };
 
         lsp.enable = true;
         treesitter = {
@@ -63,23 +57,31 @@
         };
 
         # Friendly little helper window for remembering kebinds
-        binds.whichKey = {
-          enable = true;
-        };
+        binds.whichKey.enable = true;
         mini.icons.enable = true; # Used by a couple things, just icons
 
         minimap.codewindow.enable = true;
         minimap.minimap-vim.enable = false;
 
-        #Scrollbar
-        visuals.nvim-scrollbar.enable = true;
+        visuals = {
+          #Scrollbar
+          nvim-scrollbar.enable = true;
+          # progress window for nvim, lower right
+          fidget-nvim.enable = true;
+          # Highlight things we curse over
+          nvim-cursorline.enable = true;
+        };
 
-        # Alert window for nvim
-        visuals.fidget-nvim.enable = true;
+        # Pretty notifications, top left. More important things go here
         notify.nvim-notify.enable = true;
 
         # A VSC style file browser on the left
-        filetree.neo-tree.enable = true;
+        filetree.neo-tree = {
+          enable = true;
+          setupOpts = {
+            close_if_last_window = true; # Don't become a zombie IDE if there's just the browser open
+          };
+        };
       };
     };
   };

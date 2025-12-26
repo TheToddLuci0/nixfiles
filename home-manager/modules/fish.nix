@@ -10,6 +10,7 @@
     home.shell.enableFishIntegration = true;
     home.packages = with pkgs; [
       python3
+      grc
     ];
     programs.fish = {
         shellAbbrs = {
