@@ -11,8 +11,14 @@
     home.packages = with pkgs; [
       python3
       grc
+      nix-your-shell
     ];
     programs.fish = {
+        interactiveShellInit = ''
+        if command -q nix-your-shell
+          nix-your-shell fish | source
+        end
+        '';
         shellAbbrs = {
           ll = "ls -laFh";
           la = "ls -A";
