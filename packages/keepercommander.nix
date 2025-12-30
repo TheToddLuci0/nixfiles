@@ -35,29 +35,7 @@
 , pytest
 , testfixtures
 
-, pikepdf
 }:
-let
-  fido2_2_0_0 = fido2.overridePythonAttrs (old: rec {
-    version = "2.0.0";
-    src = old.src.override {
-      inherit version;
-      hash = "sha256-MGHNBec7Og72r8O4A9V8gmqi1qlzLRar1ydzYfWOeWQ=";
-    };
-# The tests will wipe any TPM's they touch
-    doCheck = false;
-  });
-  # Stopgap until someone updates FPDF2
-  # https://github.com/NixOS/nixpkgs/pull/404863
-  fpdf2_2_8_3 = fpdf2.overridePythonAttrs (old: rec {
-    version = "2.8.3";
-    src = old.src.override {
-      hash = "sha256-uLaVRseakLg7Q9QO4F6BM7vQIFeA44ry8cqDfas8oMA=";
-      tag = version;
-    };
-    nativeCheckInputs = old.nativeCheckInputs ++ [pikepdf];
-  });
-in
 buildPythonPackage rec {
   pname = "keepercommander";
   version = "17.1.3";
@@ -94,7 +72,7 @@ buildPythonPackage rec {
     bcrypt
     colorama
     cryptography
-    fido2_2_0_0
+    fido2
     flask
     flask-limiter
     keeper-secrets-manager-core
@@ -111,7 +89,7 @@ buildPythonPackage rec {
     websockets
     aiortc
     pydantic
-    fpdf2_2_8_3
+    fpdf2
   ];
 
   nativeCheckInputs = [

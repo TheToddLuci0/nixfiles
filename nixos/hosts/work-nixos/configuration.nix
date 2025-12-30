@@ -283,5 +283,8 @@
       # server_names = [ ... ];
     };
   };
+  programs.nix-ld = {
+    enable = true;
+  };
 
 }
