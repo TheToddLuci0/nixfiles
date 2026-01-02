@@ -86,6 +86,9 @@
 
     zellij
     protonvpn-gui
+
+    # I like to have fun
+    cataclysm-dda
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
