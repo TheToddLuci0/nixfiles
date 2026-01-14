@@ -54,6 +54,7 @@
       source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
 
       '';
+
       oh-my-zsh = {
         theme = "custom-rkj-repos";
         custom = "$HOME/.config/zsh-custom";
