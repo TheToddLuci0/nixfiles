@@ -1,6 +1,7 @@
 {...}:
 {
   imports = [
+    ./common.nix
     ./zsh.nix
     ./stylix.nix
     ./kitty.nix

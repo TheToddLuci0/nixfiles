@@ -45,6 +45,7 @@
             enable = true;
             extensions.crates-nvim.enable = true;
           };
+          go.enable = true;
         };
 
         statusline.lualine.enable = true;
