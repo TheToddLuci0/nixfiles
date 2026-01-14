@@ -281,5 +281,5 @@
   programs.nix-ld = {
     enable = true;
   };
-  programs.nh.flake = "/hone/notroot/git/nixfiles/";
+  programs.nh.flake = "/home/notroot/git/nixfiles/";
 }
