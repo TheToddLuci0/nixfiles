@@ -15,15 +15,15 @@
       plugins = [
         {
           name = "grc";
-          src = pkgs.fishPlugins.grc.src;
+          inherit (pkgs.fishPlugins.grc) src;
         } # Colorized command output
         {
           name = "bang-bang";
-          src = pkgs.fishPlugins.bang-bang.src;
+          inherit (pkgs.fishPlugins.bang-bang) src;
         } # Let me !$ damnit
         {
           name = "colorized-man-pages";
-          src = pkgs.fishPlugins.colored-man-pages.src;
+          inherit (pkgs.fishPlugins.colored-man-pages) src;
         } # Pretty man ;)
       ];
       interactiveShellInit = ''

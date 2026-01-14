@@ -1,5 +1,5 @@
 # treefmt.nix
-{...}: {
+_: {
   # Used to find the project root
   projectRootFile = "flake.nix";
   # Enable the terraform formatter
@@ -11,5 +11,6 @@
   programs = {
     alejandra.enable = true;
     deadnix.enable = true;
+    statix.enable = true;
   };
 }
