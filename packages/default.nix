@@ -1,6 +1,5 @@
-self: super: with self; 
-
-{
+self: super:
+with self; {
   keeperpasswordmanager = super.callPackage ./keeper.nix {};
   bbot = super.callPackage ./bbot.nix {};
   keeper-secrets-manager-core = super.python3.pkgs.callPackage ./keeper-secrets-manager-core.nix {};

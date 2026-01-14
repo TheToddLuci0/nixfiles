@@ -2,9 +2,7 @@
   config,
   lib,
   ...
-}:
-
-{
+}: {
   config = lib.mkIf config.programs.starship.enable {
     programs.starship = {
       # Configuration written to ~/.config/starship.toml

@@ -2,10 +2,7 @@
   pkgs,
   lib,
   ...
-}:
-
-{
-
+}: {
   imports = [
     ../neovim.nix
     ../hypr.nix
@@ -181,16 +178,16 @@
 
   home.file.".gitignore_global" = {
     text = ''
-        # Direnv stuff
-        .direnv
-        .envrc
+      # Direnv stuff
+      .direnv
+      .envrc
     '';
   };
 
   programs.vscode = {
     enable = true;
     profiles.default = {
-      extensions = [ pkgs.vscode-extensions.jnoortheen.nix-ide ];
+      extensions = [pkgs.vscode-extensions.jnoortheen.nix-ide];
     };
   };
 
@@ -224,85 +221,88 @@
     '';
     matchBlocks =
       lib.trivial.mergeAttrs
-        (lib.trivial.mergeAttrs
-          # This magic generates the SSH config entries for each of the MANTIS devices. It's a bit ugly, but since I'll never have to edit my hosts file directly, I don't care.
-          (builtins.listToAttrs (
+      (
+        lib.trivial.mergeAttrs
+        # This magic generates the SSH config entries for each of the MANTIS devices. It's a bit ugly, but since I'll never have to edit my hosts file directly, I don't care.
+        (builtins.listToAttrs (
+          builtins.genList (x: {
+            name = "mantis-${toString x}";
+            value = {
+              user = "converge";
+              #hostname = "172.29.249.1${toString x}";
+              hostname = "0${toString x}.mantisops.com";
+              identityFile = "/home/notroot/.ssh/id_rsa.pub";
+              identitiesOnly = true;
+            };
+          })
+          70
+        ))
+        (
+          builtins.listToAttrs (
             builtins.genList (x: {
-              name = "mantis-${toString x}";
+              name = "mantis-kali-${toString x}";
               value = {
                 user = "converge";
+                port = 2200;
                 #hostname = "172.29.249.1${toString x}";
                 hostname = "0${toString x}.mantisops.com";
                 identityFile = "/home/notroot/.ssh/id_rsa.pub";
                 identitiesOnly = true;
               };
-            }) 70
-          ))
-          (
-            builtins.listToAttrs (
-              builtins.genList (x: {
-                name = "mantis-kali-${toString x}";
-                value = {
-                  user = "converge";
-                  port = 2200;
-                  #hostname = "172.29.249.1${toString x}";
-                  hostname = "0${toString x}.mantisops.com";
-                  identityFile = "/home/notroot/.ssh/id_rsa.pub";
-                  identitiesOnly = true;
-                };
-              }) 70
-            )
+            })
+            70
           )
         )
-        # non-generated SSH configs go here
-        {
-          "*" = {
-            identitiesOnly = true; # Don't send all 15 keys
-          }; # Hack
-          "aws-vpn" = {
-            hostname = "172.29.245.16";
-            user = "ubuntu";
-            # identityFile = "$HOME/.ssh/etg_pt_01.pem";
-          };
-          "mantis-kali" = {
-            hostname = "172.29.249.128";
-            port = 2200;
-            identityFile = "/home/notroot/.ssh/id_rsa.pub";
-          };
-          "mccracken" = {
-            hostname = "172.29.249.98";
-            user = "converge";
-            identityFile = "/home/notroot/.ssh/id_rsa.pub";
-          };
-          "controller" = {
-            user = "lwoolery";
-            hostname = "172.29.246.221";
-            identityFile = "/home/notroot/.ssh/id_rsa.pub";
-          };
-          "old-nessus" = {
-            user = "ec2-user";
-            hostname = "172.29.246.158";
-          };
-          "nessus" = {
-            user = "ubuntu";
-            hostname = "172.29.246.230";
-          };
-          "aws-cracker" = {
-            user = "ubuntu";
-            hostname = "172.29.246.222";
-          };
-          "recon-heavy" = {
-            user = "kali";
-            hostname = "172.29.246.58";
-          };
-          "github.com" = {
-            identityFile = "~/.ssh/id_rsa.pub";
-            extraOptions = {
-              ControlMaster = "auto";
-              ControlPersist = "10m";
-            };
+      )
+      # non-generated SSH configs go here
+      {
+        "*" = {
+          identitiesOnly = true; # Don't send all 15 keys
+        }; # Hack
+        "aws-vpn" = {
+          hostname = "172.29.245.16";
+          user = "ubuntu";
+          # identityFile = "$HOME/.ssh/etg_pt_01.pem";
+        };
+        "mantis-kali" = {
+          hostname = "172.29.249.128";
+          port = 2200;
+          identityFile = "/home/notroot/.ssh/id_rsa.pub";
+        };
+        "mccracken" = {
+          hostname = "172.29.249.98";
+          user = "converge";
+          identityFile = "/home/notroot/.ssh/id_rsa.pub";
+        };
+        "controller" = {
+          user = "lwoolery";
+          hostname = "172.29.246.221";
+          identityFile = "/home/notroot/.ssh/id_rsa.pub";
+        };
+        "old-nessus" = {
+          user = "ec2-user";
+          hostname = "172.29.246.158";
+        };
+        "nessus" = {
+          user = "ubuntu";
+          hostname = "172.29.246.230";
+        };
+        "aws-cracker" = {
+          user = "ubuntu";
+          hostname = "172.29.246.222";
+        };
+        "recon-heavy" = {
+          user = "kali";
+          hostname = "172.29.246.58";
+        };
+        "github.com" = {
+          identityFile = "~/.ssh/id_rsa.pub";
+          extraOptions = {
+            ControlMaster = "auto";
+            ControlPersist = "10m";
           };
         };
+      };
   };
 
   # VPN Magic

@@ -1,14 +1,12 @@
-{ pkgs, ... }:
+{pkgs, ...}:
 # https://nix-community.github.io/nixvim
 {
-
-#  # Enable font config so that the below nerd fonts are picked up
-#  fonts.fontconfig.enable = lib.mkDefault true;
-#  home.packages = with pkgs; [
-#    (nerdfonts.override { fonts = ["FiraCode" "Hack"]; }) # web-devicons, installed here so fc can find them
-#  ];
+  #  # Enable font config so that the below nerd fonts are picked up
+  #  fonts.fontconfig.enable = lib.mkDefault true;
+  #  home.packages = with pkgs; [
+  #    (nerdfonts.override { fonts = ["FiraCode" "Hack"]; }) # web-devicons, installed here so fc can find them
+  #  ];
   programs.nixvim = {
-
     extraPackages = with pkgs; [
       ripgrep # Search, telescope
     ];
@@ -17,7 +15,7 @@
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
-    
+
     # Make it pretty
     colorschemes.onedark = {
       enable = true;
@@ -26,19 +24,19 @@
         transparent = true;
       };
     };
-    
+
     # Make it work
     plugins = {
       treesitter = {
         enable = true;
-	    settings = {
-	      highlight.enable = true;
-	      # This seems to make all the indents explode for some reason.
+        settings = {
+          highlight.enable = true;
+          # This seems to make all the indents explode for some reason.
           # indent.enable = true;
-	    };
+        };
       };
       telescope.enable = true;
-      # Automatically enabled by telescope, but doesn't work without a system nerd font. 
+      # Automatically enabled by telescope, but doesn't work without a system nerd font.
       # TODO: Make dynamic
       web-devicons.enable = false;
       # Default friendly lsp configs
@@ -47,7 +45,7 @@
 
     # Syntax highlighting
     lsp = {
-#      enable = true;
+      #      enable = true;
       servers = {
         lua_ls = {
           enable = true;
@@ -76,8 +74,6 @@
       hlsearch = false;
       incsearch = true;
       smartindent = true;
-
     };
-
   };
 }

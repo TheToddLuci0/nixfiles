@@ -1,15 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, ... }:
-
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../window-managers/default.nix
-    ];
+{pkgs, ...}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../window-managers/default.nix
+  ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -45,18 +42,18 @@
   };
 
   ttl0.windowManagers.gnome.enable = true;
-#  # Enable the X11 windowing system.
-#  services.xserver.enable = true;
-#
-#  # Enable the GNOME Desktop Environment.
-#  services.xserver.displayManager.gdm.enable = true;
-#  services.xserver.desktopManager.gnome.enable = true;
-#
-#  # Configure keymap in X11
-#  services.xserver.xkb = {
-#    layout = "us";
-#    variant = "";
-#  };
+  #  # Enable the X11 windowing system.
+  #  services.xserver.enable = true;
+  #
+  #  # Enable the GNOME Desktop Environment.
+  #  services.xserver.displayManager.gdm.enable = true;
+  #  services.xserver.desktopManager.gnome.enable = true;
+  #
+  #  # Configure keymap in X11
+  #  services.xserver.xkb = {
+  #    layout = "us";
+  #    variant = "";
+  #  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -84,9 +81,9 @@
   users.users.notroot = {
     isNormalUser = true;
     description = "notroot";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -134,6 +131,5 @@
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 }

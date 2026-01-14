@@ -8,20 +8,20 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-#    nixvim = {
-#      url = "github:nix-community/nixvim";
-#      inputs.nixpkgs.follows = "nixpkgs";
-#    };
+    #    nixvim = {
+    #      url = "github:nix-community/nixvim";
+    #      inputs.nixpkgs.follows = "nixpkgs";
+    #    };
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager-unstable = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     stylix-unstable.url = "github:danth/stylix";
-#    nixvim-unstable = {
-#      url = "github:nix-community/nixvim";
-#      inputs.nixpkgs.follows = "nixpkgs-unstable";
-#    };
+    #    nixvim-unstable = {
+    #      url = "github:nix-community/nixvim";
+    #      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    #    };
     direnv-instant-unstable = {
       url = "github:Mic92/direnv-instant";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -35,26 +35,38 @@
       url = "github:re1n0/nixos-rocksmith";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    systems.url = "github:nix-systems/default";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   outputs = {
+    self,
     nixpkgs,
     nixpkgs-unstable,
-    home-manager,
     home-manager-unstable,
+    treefmt-nix,
+    systems,
     ...
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+    treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
   in {
-#    packages.${system}.ttl0-nvim =
-#      (
-#        nvf.lib.neovimConfiguration {
-#          pkgs = nixpkgs.legacyPackages.${system};
-#          modules = [./modules/nvf.nix];
-#        }
-#      ).neovim;
+    # for `nix fmt`
+    formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+    # for `nix flake check`
+    checks = eachSystem (pkgs: {
+      formatting = treefmtEval.${pkgs.system}.config.build.check self;
+    });
+    #    packages.${system}.ttl0-nvim =
+    #      (
+    #        nvf.lib.neovimConfiguration {
+    #          pkgs = nixpkgs.legacyPackages.${system};
+    #          modules = [./modules/nvf.nix];
+    #        }
+    #      ).neovim;
     homeConfigurations = {
       "notroot@work-nixos" = home-manager-unstable.lib.homeManagerConfiguration {
         # inherit pkgs;
@@ -79,7 +91,7 @@
           inputs.nvf.homeManagerModules.default
           ./home-manager/spaghetti-llc_notroot/home.nix
           inputs.stylix-unstable.homeModules.stylix
-#          inputs.nixvim-unstable.homeModules.nixvim
+          #          inputs.nixvim-unstable.homeModules.nixvim
           inputs.direnv-instant-unstable.homeModules.direnv-instant
         ];
       };
@@ -109,11 +121,10 @@
           inputs.nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
           inputs.nixos-rocksmith.nixosModules.default
 
-#          #Hacky nvf
-#          ({pkgs, ...}: {
-#            environment.systemPackages = [self.packages.${pkgs.stdenv.system}.ttl0-nvim];
-#          })
-
+          #          #Hacky nvf
+          #          ({pkgs, ...}: {
+          #            environment.systemPackages = [self.packages.${pkgs.stdenv.system}.ttl0-nvim];
+          #          })
         ];
       };
     };

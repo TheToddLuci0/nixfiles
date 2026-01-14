@@ -1,9 +1,11 @@
-{ lib, config, pkgs, ... }:
-
-let 
-  cfg = config.ttl0.roles.dev;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.ttl0.roles.dev;
+in {
   options.ttl0.roles.dev = {
     enable = lib.mkEnableOption "Enable dev role";
   };
@@ -15,8 +17,6 @@ in
       gnumake
       rustup
       gcc
-
     ];
   };
-
 }

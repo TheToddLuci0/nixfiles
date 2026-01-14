@@ -1,40 +1,37 @@
-{ lib
-, buildPythonPackage
-, fetchPypi
-, pythonOlder
-
-# Build system
-, setuptools
-, setuptools-scm
-
-# Python deps
-, asciitree
-, bcrypt
-, colorama
-, cryptography
-, fido2
-, flask
-, flask-limiter
-, keeper-secrets-manager-core
-, prompt-toolkit
-, protobuf
-, pycryptodomex
-, pyngrok
-, pyperclip
-, pysocks
-, python-dotenv
-, requests
-, tabulate
-, websockets
-, aiortc
-, pydantic
-, fpdf2
-, psutil
-
-# Tests
-, pytest
-, testfixtures
-
+{
+  lib,
+  buildPythonPackage,
+  fetchPypi,
+  pythonOlder,
+  # Build system
+  setuptools,
+  setuptools-scm,
+  # Python deps
+  asciitree,
+  bcrypt,
+  colorama,
+  cryptography,
+  fido2,
+  flask,
+  flask-limiter,
+  keeper-secrets-manager-core,
+  prompt-toolkit,
+  protobuf,
+  pycryptodomex,
+  pyngrok,
+  pyperclip,
+  pysocks,
+  python-dotenv,
+  requests,
+  tabulate,
+  websockets,
+  aiortc,
+  pydantic,
+  fpdf2,
+  psutil,
+  # Tests
+  pytest,
+  testfixtures,
 }:
 buildPythonPackage rec {
   pname = "keepercommander";
@@ -101,6 +98,6 @@ buildPythonPackage rec {
     description = "Keeper Commander for Python 3";
     homepage = "https://keepersecurity.com/";
     license = licenses.mit;
-    maintainers = [ maintainers.TheToddLuci0 ];
+    maintainers = [maintainers.TheToddLuci0];
   };
 }

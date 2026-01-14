@@ -1,16 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, ... }:
-
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../window-managers/default.nix
-      ../../roles
-    ];
+{pkgs, ...}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../window-managers/default.nix
+    ../../roles
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -88,10 +85,10 @@
   users.users.notroot = {
     isNormalUser = true;
     description = "notroot";
-    extraGroups = [ "networkmanager" "wheel" "audio" "gamemode" "rtkit" "docker" ];
+    extraGroups = ["networkmanager" "wheel" "audio" "gamemode" "rtkit" "docker"];
     shell = pkgs.fish;
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -145,10 +142,9 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 
-
   # Nvidia
   hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   # Password Managers
   programs._1password.enable = true;
@@ -167,9 +163,9 @@
   programs.zsh.enable = true;
   programs.fish.enable = true;
   # https://wiki.nixos.org/wiki/Command_Shell#Using_Flakes
-  programs.command-not-found.enable = false; 
+  programs.command-not-found.enable = false;
   users.defaultUserShell = pkgs.fish;
-  environment.shells = with pkgs; [ fish zsh bash ];
+  environment.shells = with pkgs; [fish zsh bash];
 
   # Enable custom roles
   ttl0.roles = {
@@ -193,5 +189,4 @@
       setSocketVariable = true;
     };
   };
-
 }

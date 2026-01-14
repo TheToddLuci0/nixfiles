@@ -1,10 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-
-{
-
+{pkgs, ...}: {
   imports = [
     # ../neovim.nix
     ../hypr.nix
@@ -22,9 +16,18 @@
       set fish_greeting # Disable welcome message
     '';
     plugins = [
-      {name = "grc"; src = pkgs.fishPlugins.grc.src;} # Colorized command output
-      {name = "bang-bang"; src = pkgs.fishPlugins.bang-bang.src; } # Let me !$ damnit
-      {name = "colorized-man-pages"; src = pkgs.fishPlugins.colored-man-pages.src; } # Pretty man ;)
+      {
+        name = "grc";
+        src = pkgs.fishPlugins.grc.src;
+      } # Colorized command output
+      {
+        name = "bang-bang";
+        src = pkgs.fishPlugins.bang-bang.src;
+      } # Let me !$ damnit
+      {
+        name = "colorized-man-pages";
+        src = pkgs.fishPlugins.colored-man-pages.src;
+      } # Pretty man ;)
     ];
   };
   programs.starship.enable = true;
@@ -164,19 +167,19 @@
     };
   };
 
- programs.git = {
-   enable = true;
-   signing.key = "";
-   signing.signByDefault = true;
-   settings = {
-     core.excludesfile = "~/.gitignore_global";
-     user.name = "E26D48B308C7C1C39CD3C3E686B35D9789EBE4A5";
-     user.email = "thetoddluci0@pm.me";
-     push = {
-       autoSetupRemote = true;
-     };
-   };
- };
+  programs.git = {
+    enable = true;
+    signing.key = "";
+    signing.signByDefault = true;
+    settings = {
+      core.excludesfile = "~/.gitignore_global";
+      user.name = "E26D48B308C7C1C39CD3C3E686B35D9789EBE4A5";
+      user.email = "thetoddluci0@pm.me";
+      push = {
+        autoSetupRemote = true;
+      };
+    };
+  };
 
   home.file.".gitignore_global" = {
     text = "# Direnv stuff
@@ -213,5 +216,4 @@
   programs.direnv-instant.enable = true;
 
   programs.kitty.enable = true;
-
 }

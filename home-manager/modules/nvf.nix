@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.nvf = {
     enable = true;
     settings = {
@@ -61,7 +60,7 @@
         binds.whichKey.enable = true;
         mini.icons.enable = true; # Used by a couple things, just icons
 
-# https://github.com/NotAShelf/nvf/issues/1312#issuecomment-3717096367
+        # https://github.com/NotAShelf/nvf/issues/1312#issuecomment-3717096367
         # minimap.codewindow.enable = true;
         minimap.minimap-vim.enable = false;
 

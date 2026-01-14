@@ -2,8 +2,7 @@
   pkgs,
   # stylix,
   ...
-}:
-{
+}: {
   stylix = {
     enable = true;
     # Automatically generate the background based on the theme

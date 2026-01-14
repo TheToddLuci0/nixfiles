@@ -4,32 +4,26 @@
   pkgs,
   # pkgs-unstable,
   ...
-}:
-
-let
+}: let
   cfg = config.ttl0.roles.gaming;
-in
-{
+in {
   options.ttl0.roles.gaming = {
     enable = lib.mkEnableOption "Enable gaming role";
   };
 
   config = lib.mkIf cfg.enable {
     programs.steam = {
-        enable = true;
-        remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-        dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-        rocksmithPatch.enable = true; # https://github.com/theNizo/linux_rocksmith/blob/main/guides/setup/nixos/flake.md
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      rocksmithPatch.enable = true; # https://github.com/theNizo/linux_rocksmith/blob/main/guides/setup/nixos/flake.md
     };
     programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [
-        discord
-        helvum # Lets you view pipewire graph and connect IOs
-        rtaudio 
-
+      discord
+      helvum # Lets you view pipewire graph and connect IOs
+      rtaudio
     ];
-
-
 
     # systemd.user.timers."kill-discord" = {
     #   # Discord has a bug where it doesn't send notifications to phones if you're logged in. So, we kill it. :)
@@ -42,6 +36,5 @@ in
     #     OnCalendar = "*-*-* 00:00:00";
     #   };
     # };
-
   };
 }

@@ -1,15 +1,14 @@
-{ lib
-, buildPythonPackage
-, fetchPypi
-, setuptools
-
-# Python deps
-, requests
-, cryptography
-, importlib-metadata
-, pythonOlder
+{
+  lib,
+  buildPythonPackage,
+  fetchPypi,
+  setuptools,
+  # Python deps
+  requests,
+  cryptography,
+  importlib-metadata,
+  pythonOlder,
 }:
-
 buildPythonPackage rec {
   pname = "keeper-secrets-manager-core";
   version = "16.6.6";
@@ -39,6 +38,6 @@ buildPythonPackage rec {
     description = "Keeper Secrets Manager for Python 3";
     homepage = "https://github.com/Keeper-Security/secrets-manager";
     license = licenses.mit;
-    maintainers = [ maintainers.TheToddLuci0 ];
+    maintainers = [maintainers.TheToddLuci0];
   };
 }

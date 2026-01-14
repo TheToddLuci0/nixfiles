@@ -3,25 +3,21 @@
   pkgs,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.ttl0.windowManagers.gnome;
-in
-{
+in {
   options = {
     ttl0.windowManagers.gnome.enable = lib.mkEnableOption "Enable GNOME";
   };
 
   config = lib.mkIf cfg.enable {
-
     environment.systemPackages = with pkgs.gnomeExtensions; [
       appindicator
       extension-list
       system-monitor-next
     ];
 
-    services.udev.packages = [ pkgs.gnome-settings-daemon ];
+    services.udev.packages = [pkgs.gnome-settings-daemon];
 
     # from autogen configuration.nix
 
@@ -32,8 +28,8 @@ in
     services.displayManager.gdm.enable = true;
     services.desktopManager.gnome.enable = true;
 
-# Debug GDM
-#    services.xserver.displayManager.gdm.debug = true;
+    # Debug GDM
+    #    services.xserver.displayManager.gdm.debug = true;
 
     # Configure keymap in X11
     services.xserver.xkb = {
@@ -43,7 +39,7 @@ in
 
     # Disable unneeded packages
     # Took a list of all installed, commented the ones to keep
-    environment.gnome.excludePackages = (with pkgs; [
+    environment.gnome.excludePackages = with pkgs; [
       # gnome-backgrounds-47.0
       # gnome-bluetooth-47.1
       # gnome-bluetooth-47.1-man
@@ -78,7 +74,7 @@ in
       # gnome-user-docs-47.2
       # gnome-user-share-47.2
       # gnome-weather-47.0
-    ]);
+    ];
     services.gnome = {
       # Disable "core services" that are not, in fact, core
       gnome-online-accounts.enable = false;
@@ -86,5 +82,4 @@ in
     # gnome email client
     programs.geary.enable = false;
   };
-
 }

@@ -1,17 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, ... }:
-
-{
-
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../window-managers/default.nix
-      ../../roles
-    ];
+{pkgs, ...}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../window-managers/default.nix
+    ../../roles
+  ];
 
   # Enable custom roles
   ttl0.roles = {
@@ -54,20 +50,20 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-#  ttl0.windowManagers.hyprland.enable = true;
+  #  ttl0.windowManagers.hyprland.enable = true;
   ttl0.windowManagers.gnome.enable = true;
-#  # Enable the X11 windowing system.
-#  services.xserver.enable = true;
-#
-#  # Enable the GNOME Desktop Environment.
-#  services.xserver.displayManager.gdm.enable = true;
-#  services.xserver.desktopManager.gnome.enable = true;
-#
-#  # Configure keymap in X11
-#  services.xserver.xkb = {
-#    layout = "us";
-#    variant = "";
-#  };
+  #  # Enable the X11 windowing system.
+  #  services.xserver.enable = true;
+  #
+  #  # Enable the GNOME Desktop Environment.
+  #  services.xserver.displayManager.gdm.enable = true;
+  #  services.xserver.desktopManager.gnome.enable = true;
+  #
+  #  # Configure keymap in X11
+  #  services.xserver.xkb = {
+  #    layout = "us";
+  #    variant = "";
+  #  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -95,9 +91,9 @@
   users.users.notroot = {
     isNormalUser = true;
     description = "Test Haxor";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "docker"];
+    extraGroups = ["networkmanager" "wheel" "kvm" "docker"];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -117,7 +113,7 @@
     zsh
     kitty
     tmux
-#    gnomeExtensions.appindicator
+    #    gnomeExtensions.appindicator
     neovim
     nixd
     nixfmt-rfc-style
@@ -127,9 +123,9 @@
     protonvpn-gui
   ];
 
-#  services.udev.packages = with pkgs; [
-#    gnome-settings-daemon
-#  ];
+  #  services.udev.packages = with pkgs; [
+  #    gnome-settings-daemon
+  #  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -169,23 +165,22 @@
   # ZSH over BASH
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh bash ];
+  environment.shells = with pkgs; [zsh bash];
 
-#  # Use vim as default
-#  programs.vim.defaultEditor = true;
-#  programs.vim.enable = true;
+  #  # Use vim as default
+  #  programs.vim.defaultEditor = true;
+  #  programs.vim.enable = true;
 
   # Use nvim as default
-#  programs.neovim.enable = true;
-#  programs.neovim.defaultEditor = true;
-#  programs.neovim.configure = {
-#      
-#  };
-  
+  #  programs.neovim.enable = true;
+  #  programs.neovim.defaultEditor = true;
+  #  programs.neovim.configure = {
+  #
+  #  };
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-
   };
 
   # Enable nix-command and flakes
@@ -207,7 +202,7 @@
     };
   };
   # services.openvpn.servers = {
-  
+
   #   converge = {
   #     config = '' config /root/openvpn/converge.ovpn '';
   #     updateResolvConf = true;
@@ -221,7 +216,7 @@
   programs._1password-gui.polkitPolicyOwners = ["notroot"];
 
   # needed for ZSH autocomplete to work propperly
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = ["/share/zsh"];
 
   # Yubikey
   security.pam.u2f.settings.cue = true; # Show a reminder
@@ -234,25 +229,24 @@
   # First one is the AWS yubikey clone
   # Second one is the OnlyKey
   services.udev.extraRules = ''
-      ACTION=="remove",\
-       ENV{ID_BUS}=="usb",\
-       ENV{ID_MODEL_ID}=="0417",\
-       ENV{ID_VENDOR_ID}=="1949",\
-       ENV{ID_VENDOR}=="Amazon",\
-       RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+    ACTION=="remove",\
+     ENV{ID_BUS}=="usb",\
+     ENV{ID_MODEL_ID}=="0417",\
+     ENV{ID_VENDOR_ID}=="1949",\
+     ENV{ID_VENDOR}=="Amazon",\
+     RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
 
-      ACTION=="remove",\
-       ENV{ID_BUS}=="usb",\
-       ENV{ID_MODEL_ID}=="60fc",\
-       ENV{ID_VENDOR_ID}=="1d50",\
-       ENV{ID_VENDOR}=="CRYPTOTRUST",\
-       RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+    ACTION=="remove",\
+     ENV{ID_BUS}=="usb",\
+     ENV{ID_MODEL_ID}=="60fc",\
+     ENV{ID_VENDOR_ID}=="1d50",\
+     ENV{ID_VENDOR}=="CRYPTOTRUST",\
+     RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   '';
-
 
   #DNS
   networking = {
-    nameservers = [ "127.0.0.1" "::1" ];
+    nameservers = ["127.0.0.1" "::1"];
     # If using dhcpcd:
     # dhcpcd.extraConfig = "nohook resolv.conf";
   };
@@ -286,5 +280,4 @@
   programs.nix-ld = {
     enable = true;
   };
-
 }
