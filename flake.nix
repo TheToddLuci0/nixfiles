@@ -75,9 +75,10 @@
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
+          inputs.nvf.homeManagerModules.default
           ./home-manager/work_notroot/home.nix
           inputs.stylix-unstable.homeModules.stylix
-          inputs.nixvim-unstable.homeModules.nixvim
+          # inputs.nixvim-unstable.homeModules.nixvim
           inputs.direnv-instant-unstable.homeModules.direnv-instant
         ];
 

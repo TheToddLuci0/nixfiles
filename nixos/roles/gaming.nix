@@ -16,7 +16,6 @@ in {
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-      rocksmithPatch.enable = true; # https://github.com/theNizo/linux_rocksmith/blob/main/guides/setup/nixos/flake.md
     };
     programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [

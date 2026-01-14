@@ -10,5 +10,8 @@
         enable_audio_bell = false;
       };
     };
+  home.file.".config/kitty/diff.conf".text = ''
+    ignore_name flake.lock
+  '';
   };
 }

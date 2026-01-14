@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ../neovim.nix
+    # ../neovim.nix
     ../hypr.nix
     ../modules
   ];
@@ -63,6 +63,8 @@
     # Pipx and magic shell completions
     python312Packages.argcomplete
     pipx
+    uv
+    nh
 
     # gnome shell
     gnomeExtensions.extension-list
@@ -355,6 +357,11 @@
   programs.direnv-instant.enable = true;
 
   programs.kitty.enable = true;
+  home.file.".config/kitty/ssh.conf".text = ''
+    askpass ssh
+    shell_integration enabled
+
+  '';
 
   # Reporting
   services.flameshot.enable = true;

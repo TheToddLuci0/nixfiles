@@ -121,6 +121,7 @@
     gh
     usbutils
     protonvpn-gui
+    rustup
   ];
 
   #  services.udev.packages = with pkgs; [
@@ -280,4 +281,5 @@
   programs.nix-ld = {
     enable = true;
   };
+  programs.nh.flake = "/hone/notroot/git/nixfiles/";
 }
