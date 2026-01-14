@@ -56,21 +56,6 @@
 #        }
 #      ).neovim;
     homeConfigurations = {
-      "notroot@desktop-nixos-vm" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        # imports = [ inputs.nixvim.homeManagerModules.nixvim ];
-
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [
-          ./home-manager/desktop_vm_notroot/home.nix
-#          inputs.nixvim.homeManagerModules.nixvim
-        ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-      };
       "notroot@work-nixos" = home-manager-unstable.lib.homeManagerConfiguration {
         # inherit pkgs;
         pkgs = pkgs-unstable;
@@ -100,10 +85,6 @@
       };
     };
     nixosConfigurations = {
-      "desktop-nixos-vm" = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [./nixos/hosts/desktop-nixos-vm/configuration.nix];
-      };
       # Work nixos vm
       "work-nixos" = nixpkgs-unstable.lib.nixosSystem {
         inherit system;
