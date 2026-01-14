@@ -27,7 +27,7 @@
         lsp.enable = true;
         treesitter = {
           enable = true;
-          indent.disable = [ "nix" ];
+          # indent.disable = [ "nix" ]; # Possibly needs replaces with vim.treesitter.indent.enable = false
         };
 
         comments.comment-nvim.enable = true;
@@ -61,7 +61,8 @@
         binds.whichKey.enable = true;
         mini.icons.enable = true; # Used by a couple things, just icons
 
-        minimap.codewindow.enable = true;
+# https://github.com/NotAShelf/nvf/issues/1312#issuecomment-3717096367
+        # minimap.codewindow.enable = true;
         minimap.minimap-vim.enable = false;
 
         visuals = {
