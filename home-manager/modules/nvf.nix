@@ -26,6 +26,7 @@
         lsp.enable = true;
         treesitter = {
           enable = true;
+          indent.enable = false;
           # indent.disable = [ "nix" ]; # Possibly needs replaces with vim.treesitter.indent.enable = false
         };
 
