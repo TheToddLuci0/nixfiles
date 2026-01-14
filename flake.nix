@@ -38,12 +38,10 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
     home-manager-unstable,
-    nvf,
     ...
   } @ inputs: let
     system = "x86_64-linux";

@@ -1,4 +1,4 @@
-{config,pkgs,lib,...}:
+{pkgs,...}:
 {
   # Configuration for all hosts.
   home.packages = with pkgs; [
