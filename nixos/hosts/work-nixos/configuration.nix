@@ -124,6 +124,7 @@
     python3
     gh
     usbutils
+    protonvpn-gui
   ];
 
 #  services.udev.packages = with pkgs; [
@@ -281,6 +282,9 @@
       # You can choose a specific set of servers from https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
       # server_names = [ ... ];
     };
+  };
+  programs.nix-ld = {
+    enable = true;
   };
 
 }
