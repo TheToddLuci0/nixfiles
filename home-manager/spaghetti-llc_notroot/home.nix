@@ -10,26 +10,7 @@
   ];
 
   # programs.zsh.enable = true;
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set fish_greeting # Disable welcome message
-    '';
-    plugins = [
-      {
-        name = "grc";
-        src = pkgs.fishPlugins.grc.src;
-      } # Colorized command output
-      {
-        name = "bang-bang";
-        src = pkgs.fishPlugins.bang-bang.src;
-      } # Let me !$ damnit
-      {
-        name = "colorized-man-pages";
-        src = pkgs.fishPlugins.colored-man-pages.src;
-      } # Pretty man ;)
-    ];
-  };
+  programs.fish.enable = true;
   programs.starship.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should
