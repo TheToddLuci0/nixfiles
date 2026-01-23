@@ -116,7 +116,7 @@
     #    gnomeExtensions.appindicator
     neovim
     nixd
-    nixfmt-rfc-style
+    nixfmt
     python3
     gh
     usbutils

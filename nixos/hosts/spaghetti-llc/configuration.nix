@@ -192,5 +192,4 @@
 
   # Moved here since this is the only place that actually has the flake imported
   programs.steam.rocksmithPatch.enable = true; # https://github.com/theNizo/linux_rocksmith/blob/main/guides/setup/nixos/flake.md
-
 }
