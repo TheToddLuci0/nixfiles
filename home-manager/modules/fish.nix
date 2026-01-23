@@ -25,6 +25,10 @@
           name = "colorized-man-pages";
           inherit (pkgs.fishPlugins.colored-man-pages) src;
         } # Pretty man ;)
+        {
+          name = "fish-you-should-use";
+          inherit (pkgs.fishPlugins.fish-you-should-use) src;
+        }
       ];
       interactiveShellInit = ''
         set fish_greeting # Disable welcome message
