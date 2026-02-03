@@ -38,7 +38,10 @@
 
           bash.enable = true;
           hcl.enable = true;
-          markdown.enable = true;
+          markdown = {
+            enable = true;
+            extensions.markview-nvim.enable = true;
+          };
           python.enable = true;
           nix.enable = true;
           rust = {
