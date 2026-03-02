@@ -16,6 +16,9 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Support NFS
+  boot.supportedFilesystems = ["nfs"];
+
   boot.initrd.luks.devices."luks-69102f03-9858-4c57-941c-9662f3041762".device = "/dev/disk/by-uuid/69102f03-9858-4c57-941c-9662f3041762";
   networking.hostName = "spaghetti-llc"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

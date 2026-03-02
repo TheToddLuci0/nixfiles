@@ -29,6 +29,15 @@
           name = "fish-you-should-use";
           inherit (pkgs.fishPlugins.fish-you-should-use) src;
         }
+        {
+          name = "omf-plugin-asp";
+          src = pkgs.fetchFromGitHub {
+            owner = "m-radzikowski";
+            repo = "omf-plugin-asp";
+            rev = "d3a154dc9511e93907160393cb96c90fb097e736";
+            sha256 = "DBxJ0d3HWpBsrCKbyXjQiyWN9Cgs1Lat7EkKaodv0RY=";
+          };
+        }
       ];
       interactiveShellInit = ''
         set fish_greeting # Disable welcome message
