@@ -30,6 +30,10 @@
           inherit (pkgs.fishPlugins.fish-you-should-use) src;
         }
         {
+          name = "fish-aws";
+          inherit (pkgs.fishPlugins.aws) src;
+        }
+        {
           name = "omf-plugin-asp";
           src = pkgs.fetchFromGitHub {
             owner = "m-radzikowski";

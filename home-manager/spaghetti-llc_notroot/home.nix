@@ -59,7 +59,10 @@
     # Pipx and magic shell completions
     python312Packages.argcomplete
     pipx
+
+    # Notes
     obsidian
+    logseq # Some of my older stuff (notably, ARTE notes) are in logseq apparently.
 
     # gnome shell
     gnomeExtensions.extension-list
@@ -71,6 +74,13 @@
 
     # I like to have fun
     cataclysm-dda
+    archipelago
+    # TODO Setup sops or something with the creds override to avoid having to nix prefetch
+    factorio
+
+    # I do ocationally dev from home.
+    awscli2
+    jq
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -163,9 +173,11 @@
   };
 
   home.file.".gitignore_global" = {
-    text = "# Direnv stuff
-            .direnv
-            .envrc";
+    text = ''
+        # Direnv stuff
+        .direnv
+        .envrc
+        '';
   };
 
   programs.vscode = {
