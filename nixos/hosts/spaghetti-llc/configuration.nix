@@ -147,7 +147,7 @@
 
   # Nvidia
   hardware.graphics.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = ["nvidia" "modesetting"];
 
   # Password Managers
   programs._1password.enable = true;
