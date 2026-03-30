@@ -9,6 +9,9 @@
     (import ../../packages)
   ];
 
+  # Custom roles
+  ttl0.roles.azure.enable = true;
+
   # programs.zsh.enable = true;
   programs.fish.enable = true;
   programs.starship.enable = true;
@@ -81,6 +84,8 @@
     # I do ocationally dev from home.
     awscli2
     jq
+
+    btop
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -174,10 +179,10 @@
 
   home.file.".gitignore_global" = {
     text = ''
-        # Direnv stuff
-        .direnv
-        .envrc
-        '';
+      # Direnv stuff
+      .direnv
+      .envrc
+    '';
   };
 
   programs.vscode = {

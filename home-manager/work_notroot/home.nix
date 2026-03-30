@@ -13,6 +13,8 @@
     (import ../../packages)
   ];
 
+  ttl0.roles.azure = true;
+
   programs.zsh.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should

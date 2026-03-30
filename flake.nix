@@ -33,16 +33,20 @@
     };
     nixos-rocksmith = {
       url = "github:re1n0/nixos-rocksmith";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     systems.url = "github:nix-systems/default";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    nixpkgs-gns3-255 = {
+        url = "github:nixos/nixpkgs?ref=01951bed8cbe0ca5607a9651f2544b260963ec76";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     nixpkgs-unstable,
+    nixpkgs-gns3-255,
     home-manager-unstable,
     treefmt-nix,
     systems,
@@ -53,6 +57,7 @@
     pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
     treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+    nixpkgs-gns3 = nixpkgs-gns3-255.legacyPackages.${system};
   in {
     # for `nix fmt`
     formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
@@ -115,12 +120,13 @@
       # Laptop 1
       "spaghetti-llc" = nixpkgs-unstable.lib.nixosSystem {
         inherit system;
-        # specialArgs = { inherit inputs; };
+        specialArgs = { inherit nixpkgs-gns3; };
         modules = [
           ./nixos/hosts/spaghetti-llc/configuration.nix
           # Known-good configs for laptops
           inputs.nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
           inputs.nixos-rocksmith.nixosModules.default
+
 
           #          #Hacky nvf
           #          ({pkgs, ...}: {

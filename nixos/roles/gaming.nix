@@ -20,7 +20,7 @@ in {
     programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [
       discord
-      helvum # Lets you view pipewire graph and connect IOs
+      crosspipe # Lets you view pipewire graph and connect IOs
       rtaudio
     ];
 
