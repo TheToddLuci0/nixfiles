@@ -9,6 +9,10 @@
       settings = {
         enable_audio_bell = false;
       };
+      keybindings = {
+        "f1" = "create_marker";
+        "f2" = "remove_marker";
+      };
     };
     home.file.".config/kitty/diff.conf".text = ''
       ignore_name flake.lock

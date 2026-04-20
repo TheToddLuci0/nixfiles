@@ -38,7 +38,7 @@
     systems.url = "github:nix-systems/default";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     nixpkgs-gns3-255 = {
-        url = "github:nixos/nixpkgs?ref=01951bed8cbe0ca5607a9651f2544b260963ec76";
+      url = "github:nixos/nixpkgs?ref=01951bed8cbe0ca5607a9651f2544b260963ec76";
     };
   };
 
@@ -120,13 +120,12 @@
       # Laptop 1
       "spaghetti-llc" = nixpkgs-unstable.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit nixpkgs-gns3; };
+        specialArgs = {inherit nixpkgs-gns3;};
         modules = [
           ./nixos/hosts/spaghetti-llc/configuration.nix
           # Known-good configs for laptops
           inputs.nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
           inputs.nixos-rocksmith.nixosModules.default
-
 
           #          #Hacky nvf
           #          ({pkgs, ...}: {

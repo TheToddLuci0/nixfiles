@@ -14,7 +14,10 @@ in {
     # A place for all the cursed azure things. I hate everything about it.
     home.packages = with pkgs; [
       azure-storage-azcopy
-      azure-cli
+      azure-cli-extensions.bastion
+      (azure-cli.withExtensions [
+        azure-cli.extensions.bastion
+      ])
       powershell
     ];
 

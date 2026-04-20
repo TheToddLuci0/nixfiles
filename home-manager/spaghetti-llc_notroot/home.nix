@@ -73,13 +73,13 @@
     gmetronome
 
     zellij
-    protonvpn-gui
+    proton-vpn
 
     # I like to have fun
     cataclysm-dda
     archipelago
     # TODO Setup sops or something with the creds override to avoid having to nix prefetch
-    factorio
+    #factorio
 
     # I do ocationally dev from home.
     awscli2
@@ -167,6 +167,7 @@
     enable = true;
     signing.key = "";
     signing.signByDefault = true;
+    signing.format = "openpgp";
     settings = {
       core.excludesfile = "~/.gitignore_global";
       user.name = "E26D48B308C7C1C39CD3C3E686B35D9789EBE4A5";
