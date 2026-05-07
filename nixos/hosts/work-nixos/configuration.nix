@@ -202,6 +202,8 @@
       log_level = 4;
     };
   };
+
+  networking.networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];
   # services.openvpn.servers = {
 
   #   converge = {

@@ -14,9 +14,9 @@
         "f2" = "remove_marker";
       };
     };
-    home.file.".config/kitty/diff.conf".text = ''
-      ignore_name flake.lock
-    '';
+#    home.file.".config/kitty/diff.conf".text = ''
+#      ignore_name flake.lock
+#    '';
     programs.zsh.shellAliases = {
       gd = "git difftool --dir-diff --no-symlinks";
     };

@@ -52,8 +52,8 @@
       '';
 
       oh-my-zsh = {
-        theme = "custom-rkj-repos";
-        custom = "$HOME/.config/zsh-custom";
+        # theme = "custom-rkj-repos";
+        # custom = "$HOME/.config/zsh-custom";
         enable = true;
         plugins = [
           #          "zsh-nix-shell"
@@ -68,10 +68,15 @@
         ];
       };
     };
+    #
+    # home.file.".config/zsh-custom" = {
+    #   enable = true;
+    #   source = ../assets/oh-my-zsh;
+    # };
 
-    home.file.".config/zsh-custom" = {
-      enable = true;
-      source = ../assets/oh-my-zsh;
+    programs.starship = {
+        enableZshIntegration = true;
+        enable = true;
     };
   };
 }

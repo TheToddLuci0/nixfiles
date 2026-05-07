@@ -13,7 +13,7 @@
     (import ../../packages)
   ];
 
-  ttl0.roles.azure = true;
+  ttl0.roles.azure.enable = true;
 
   programs.zsh.enable = true;
 
@@ -370,4 +370,9 @@
 
   # Tailscale
   services.tailscale-systray.enable = true;
+
+  # Autostart apps
+  xdg.autostart.entries = [
+    "${pkgs._1password-gui}/share/applications/1password.desktop"
+  ];
 }
