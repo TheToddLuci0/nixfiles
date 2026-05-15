@@ -101,6 +101,17 @@
           inputs.direnv-instant-unstable.homeModules.direnv-instant
         ];
       };
+      "notroot@coffee-machine" = home-manager-unstable.lib.homeManagerConfiguration {
+        #inherit pkgs;
+        pkgs = pkgs-unstable;
+        modules = [
+          inputs.nvf.homeManagerModules.default
+          ./home-manager/coffee-machine_notroot/home.nix
+          inputs.stylix-unstable.homeModules.stylix
+          #          inputs.nixvim-unstable.homeModules.nixvim
+          inputs.direnv-instant-unstable.homeModules.direnv-instant
+        ];
+      };
     };
     nixosConfigurations = {
       # Work nixos vm
@@ -131,6 +142,13 @@
           #          ({pkgs, ...}: {
           #            environment.systemPackages = [self.packages.${pkgs.stdenv.system}.ttl0-nvim];
           #          })
+        ];
+      };
+      
+      "coffee-machine" = nixpkgs-unstable.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./nixos/hosts/coffee-machine/configuration.nix
         ];
       };
     };
