@@ -203,7 +203,7 @@
     };
   };
 
-  networking.networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];
+  networking.networkmanager.plugins = with pkgs; [networkmanager-openvpn];
   # services.openvpn.servers = {
 
   #   converge = {

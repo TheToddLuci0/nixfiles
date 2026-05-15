@@ -144,7 +144,7 @@
           #          })
         ];
       };
-      
+
       "coffee-machine" = nixpkgs-unstable.lib.nixosSystem {
         inherit system;
         modules = [

@@ -112,16 +112,15 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      git
-      wget
-      # onlykey-agent
-      onlykey
-      protonvpn-gui
-      wireguard-tools
-    ];
+  environment.systemPackages = with pkgs; [
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    git
+    wget
+    # onlykey-agent
+    onlykey
+    protonvpn-gui
+    wireguard-tools
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -197,10 +196,12 @@
   # Moved here since this is the only place that actually has the flake imported
   #programs.steam.rocksmithPatch.enable = true; # https://github.com/theNizo/linux_rocksmith/blob/main/guides/setup/nixos/flake.md
 
-
   # Nvidia nonsense
   hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia" "modesetting"];
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
+
+  # Fan curves
+  programs.coolercontrol.enable = true;
 }
