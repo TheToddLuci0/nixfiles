@@ -26,6 +26,7 @@
       url = "github:nixos/nixpkgs?ref=01951bed8cbe0ca5607a9651f2544b260963ec76";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
   };
 
   outputs = inputs @ {
@@ -33,6 +34,7 @@
     home-manager,
     nixpkgs,
     nixpkgs-gns3-255,
+    self,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -41,6 +43,7 @@
       imports = [
         inputs.home-manager.flakeModules.home-manager
         inputs.treefmt-nix.flakeModule
+        (inputs.import-tree ./modules)
       ];
 
       perSystem = _: {
@@ -78,6 +81,7 @@
             # inherit pkgs;
             pkgs = import nixpkgs {system = "x86_64-linux";};
             modules = [
+              self.homeModules.gns3-255
               inputs.nvf.homeManagerModules.default
               ./home-manager/spaghetti-llc_notroot/home.nix
               inputs.stylix-unstable.homeModules.stylix
@@ -89,6 +93,7 @@
             # inherit pkgs;
             pkgs = import nixpkgs {system = "x86_64-linux";};
             modules = [
+              self.homeModules.gns3-255
               inputs.nvf.homeManagerModules.default
               ./home-manager/coffee-machine_notroot/home.nix
               inputs.stylix-unstable.homeModules.stylix
