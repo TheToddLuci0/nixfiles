@@ -1,0 +1,7 @@
+{
+    "chat.agent.enabled": false,
+    "chat.disableAIFeatures": true,
+    "files.exclude": {
+        "result": true
+    }
+}
