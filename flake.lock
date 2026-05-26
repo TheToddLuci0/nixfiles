@@ -68,6 +68,21 @@
         "type": "github"
       }
     },
+    "den": {
+      "locked": {
+        "lastModified": 1779806301,
+        "narHash": "sha256-T9Ka9G5L8Me3pbYJReL7iTZtG/qoYEVyeJmMP/P7k2w=",
+        "owner": "denful",
+        "repo": "den",
+        "rev": "b3e424048b42096b1e534289dead8c6c7ed8cc0b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "denful",
+        "repo": "den",
+        "type": "github"
+      }
+    },
     "direnv-instant-unstable": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -341,6 +356,21 @@
         "type": "github"
       }
     },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1778781969,
+        "narHash": "sha256-Jjuz5CmSkur8KvLDoGa+vylEp+RkQtv4mt/qcMznpH0=",
+        "owner": "denful",
+        "repo": "import-tree",
+        "rev": "d321337efd0f23a9eb14a42adb7b2c29313ab274",
+        "type": "github"
+      },
+      "original": {
+        "owner": "denful",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
     "mnw": {
       "locked": {
         "lastModified": 1777828893,
@@ -589,9 +619,11 @@
     },
     "root": {
       "inputs": {
+        "den": "den",
         "direnv-instant-unstable": "direnv-instant-unstable",
         "home-manager": "home-manager",
         "home-manager-unstable": "home-manager-unstable",
+        "import-tree": "import-tree",
         "nixos-hardware": "nixos-hardware",
         "nixos-rocksmith": "nixos-rocksmith",
         "nixpkgs": "nixpkgs",

@@ -40,6 +40,8 @@
     nixpkgs-gns3-255 = {
       url = "github:nixos/nixpkgs?ref=01951bed8cbe0ca5607a9651f2544b260963ec76";
     };
+    den.url = "github:denful/den";
+    import-tree.url = "github:denful/import-tree";
   };
 
   outputs = {
@@ -58,6 +60,17 @@
     eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
     treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     nixpkgs-gns3 = nixpkgs-gns3-255.legacyPackages.${system};
+    den =
+      (inputs.nixpkgs.lib.evalModules {
+        modules = [
+          (inputs.import-tree ./modules)
+          inputs.den.flakeOutputs.flake
+        ];
+        specialArgs.inputs = inputs;
+      })
+      .config;
+
+    inherit (den.den.hosts.x86_64-linux) coffee-machine;
   in {
     # for `nix fmt`
     formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
@@ -148,6 +161,7 @@
       "coffee-machine" = nixpkgs-unstable.lib.nixosSystem {
         inherit system;
         modules = [
+          coffee-machine.mainModule
           ./nixos/hosts/coffee-machine/configuration.nix
         ];
       };

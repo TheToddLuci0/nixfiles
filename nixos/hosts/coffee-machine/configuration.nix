@@ -91,7 +91,8 @@
   users.users.notroot = {
     isNormalUser = true;
     description = "notroot";
-    extraGroups = ["networkmanager" "wheel" "audio" "gamemode" "rtkit" "docker"];
+    # extraGroups = ["networkmanager" "wheel" "audio" "gamemode" "rtkit" "docker"];
+    extraGroups = ["networkmanager" "wheel" "audio" "rtkit" "docker"];
     shell = pkgs.fish;
     packages = with pkgs; [
       #  thunderbird
@@ -172,7 +173,7 @@
 
   # Enable custom roles
   ttl0.roles = {
-    gaming.enable = true;
+    # gaming.enable = true;
     dev.enable = true;
   };
 
