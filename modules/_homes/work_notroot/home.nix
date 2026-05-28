@@ -10,7 +10,7 @@
   ];
 
   nixpkgs.overlays = [
-    (import ../../packages)
+    (import ../../../packages)
   ];
 
   ttl0.roles.azure.enable = true;

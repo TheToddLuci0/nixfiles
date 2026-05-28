@@ -6,7 +6,7 @@
   ];
 
   nixpkgs.overlays = [
-    (import ../../packages)
+    (import ../../../packages)
   ];
 
   # Custom roles
@@ -76,8 +76,8 @@
     proton-vpn
 
     # I like to have fun
-    cataclysm-dda
-    archipelago
+    # cataclysm-dda
+    # archipelago
     # TODO Setup sops or something with the creds override to avoid having to nix prefetch
     #factorio
 
@@ -195,12 +195,12 @@
   };
 
   programs.gpg.enable = true;
-  programs.gpg.publicKeys = [
-    {
-      source = ../assets/gpg/work_pubkey.gpg;
-      trust = "ultimate";
-    }
-  ];
+  # programs.gpg.publicKeys = [
+  #   {
+  #     source = ../assets/gpg/work_pubkey.gpg;
+  #     trust = "ultimate";
+  #   }
+  # ];
 
   services.gpg-agent = {
     enable = true;

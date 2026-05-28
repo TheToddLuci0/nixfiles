@@ -3,7 +3,12 @@
     includes = [
       den.batteries.hostname
       den.aspects.gaming
+      # den.aspects.nvf
     ];
-    nixos = _: {};
+    nixos = _: {
+        imports = [
+          ../_nixos/hosts/coffee-machine/configuration.nix
+        ];
+    };
   };
 }

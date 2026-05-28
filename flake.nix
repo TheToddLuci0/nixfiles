@@ -94,7 +94,7 @@
         # the path to your home.nix.
         modules = [
           inputs.nvf.homeManagerModules.default
-          ./home-manager/work_notroot/home.nix
+          ./modules/_homes/work_notroot/home.nix
           inputs.stylix-unstable.homeModules.stylix
           # inputs.nixvim-unstable.homeModules.nixvim
           inputs.direnv-instant-unstable.homeModules.direnv-instant
@@ -108,7 +108,7 @@
         pkgs = pkgs-unstable;
         modules = [
           inputs.nvf.homeManagerModules.default
-          ./home-manager/spaghetti-llc_notroot/home.nix
+          ./modules/_homes/spaghetti-llc_notroot/home.nix
           inputs.stylix-unstable.homeModules.stylix
           #          inputs.nixvim-unstable.homeModules.nixvim
           inputs.direnv-instant-unstable.homeModules.direnv-instant
@@ -119,7 +119,7 @@
         pkgs = pkgs-unstable;
         modules = [
           inputs.nvf.homeManagerModules.default
-          ./home-manager/coffee-machine_notroot/home.nix
+          ./modules/_homes/coffee-machine_notroot/home.nix
           inputs.stylix-unstable.homeModules.stylix
           #          inputs.nixvim-unstable.homeModules.nixvim
           inputs.direnv-instant-unstable.homeModules.direnv-instant
@@ -131,7 +131,7 @@
       "work-nixos" = nixpkgs-unstable.lib.nixosSystem {
         inherit system;
         modules = [
-          ./nixos/hosts/work-nixos/configuration.nix
+          ./modules/_nixos/hosts/work-nixos/configuration.nix
         ];
         # specialArgs = {
         #   pkgs-unstable = import inputs.nixpkgs-unstable {
@@ -146,7 +146,7 @@
         inherit system;
         specialArgs = {inherit nixpkgs-gns3;};
         modules = [
-          ./nixos/hosts/spaghetti-llc/configuration.nix
+          ./modules/_nixos/hosts/spaghetti-llc/configuration.nix
           # Known-good configs for laptops
           inputs.nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
           inputs.nixos-rocksmith.nixosModules.default
@@ -162,7 +162,7 @@
         inherit system;
         modules = [
           coffee-machine.mainModule
-          ./nixos/hosts/coffee-machine/configuration.nix
+#          ./nixos/hosts/coffee-machine/configuration.nix
         ];
       };
     };
