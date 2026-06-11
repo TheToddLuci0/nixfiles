@@ -60,8 +60,9 @@
     gcr
 
     # Pipx and magic shell completions
-    python312Packages.argcomplete
-    pipx
+    python314Packages.argcomplete
+    # 6/11/26 - Broken. See https://github.com/NixOS/nixpkgs/issues/522307
+    # pipx
 
     # Notes
     obsidian
