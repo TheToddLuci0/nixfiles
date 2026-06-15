@@ -223,7 +223,7 @@
     extraConfig = ''
       IdentityAgent ~/.1password/agent.sock
     '';
-    matchBlocks =
+    settings =
       lib.trivial.mergeAttrs
       (
         lib.trivial.mergeAttrs
@@ -239,7 +239,7 @@
               identitiesOnly = true;
             };
           })
-          70
+          80
         ))
         (
           builtins.listToAttrs (
@@ -254,7 +254,7 @@
                 identitiesOnly = true;
               };
             })
-            70
+            80
           )
         )
       )
@@ -301,10 +301,8 @@
         };
         "github.com" = {
           identityFile = "~/.ssh/id_rsa.pub";
-          extraOptions = {
-            ControlMaster = "auto";
-            ControlPersist = "10m";
-          };
+          ControlMaster = "auto";
+          ControlPersist = "10m";
         };
       };
   };
