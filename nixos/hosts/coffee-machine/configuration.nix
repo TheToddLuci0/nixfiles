@@ -203,4 +203,7 @@
 
   # Fan curves
   programs.coolercontrol.enable = true;
+
+  # Streamdeck
+  programs.streamcontroller.enable = true;
 }
