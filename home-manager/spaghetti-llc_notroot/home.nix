@@ -66,7 +66,7 @@
 
     # Notes
     obsidian
-    logseq # Some of my older stuff (notably, ARTE notes) are in logseq apparently.
+    # logseq # Some of my older stuff (notably, ARTE notes) are in logseq apparently.
 
     # gnome shell
     gnomeExtensions.extension-list
