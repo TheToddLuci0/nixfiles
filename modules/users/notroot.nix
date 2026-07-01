@@ -6,4 +6,8 @@
       den.batteries.primary-user
     ];
   };
+  den.aspects."notroot@coffee-machine" = {
+    includes = [
+    ];
+  };
 }

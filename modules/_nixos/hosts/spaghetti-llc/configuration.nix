@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   pkgs,
-  nixpkgs-gns3,
   ...
 }: {
   imports = [
@@ -122,8 +121,7 @@
       onlykey
       protonvpn-gui
       wireguard-tools
-    ]
-    ++ [nixpkgs-gns3.pkgs.gns3-gui];
+    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

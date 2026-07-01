@@ -16,4 +16,5 @@
   # Define a host with a user. Den will make the matching aspects
   # for both automatically
   den.hosts.x86_64-linux.coffee-machine.users.notroot = {};
+  den.homes.x86_64-linux."notroot@coffee-machine" = { };
 }
