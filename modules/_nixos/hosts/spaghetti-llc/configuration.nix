@@ -92,7 +92,7 @@
   users.users.notroot = {
     isNormalUser = true;
     description = "notroot";
-    extraGroups = ["networkmanager" "wheel" "audio" "gamemode" "rtkit" "docker"];
+    extraGroups = ["networkmanager" "wheel" "audio" "gamemode" "rtkit" "docker" "scanner" "lp"];
     shell = pkgs.fish;
     packages = with pkgs; [
       #  thunderbird

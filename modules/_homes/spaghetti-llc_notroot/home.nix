@@ -60,12 +60,13 @@
     gcr
 
     # Pipx and magic shell completions
-    python312Packages.argcomplete
-    pipx
+    python314Packages.argcomplete
+    # 6/11/26 - Broken. See https://github.com/NixOS/nixpkgs/issues/522307
+    # pipx
 
     # Notes
     obsidian
-    logseq # Some of my older stuff (notably, ARTE notes) are in logseq apparently.
+    # logseq # Some of my older stuff (notably, ARTE notes) are in logseq apparently.
 
     # gnome shell
     gnomeExtensions.extension-list
@@ -87,6 +88,7 @@
 
     btop
     signal-desktop
+    devenv
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
