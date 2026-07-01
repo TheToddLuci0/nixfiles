@@ -13,6 +13,12 @@
         "f1" = "create_marker";
         "f2" = "remove_marker";
       };
+      diffConfig = {
+        settings = {
+          # Don't display flake.lock in diffs, it's big.
+          ignore_name = "flake.lock";
+        };
+      };
     };
     #    home.file.".config/kitty/diff.conf".text = ''
     #      ignore_name flake.lock
