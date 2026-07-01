@@ -61,7 +61,6 @@
     gcr
 
     keeperpasswordmanager
-    keepercommander
     # Pipx and magic shell completions
     python312Packages.argcomplete
     pipx
