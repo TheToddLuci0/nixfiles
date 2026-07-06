@@ -17,6 +17,8 @@
           }
         ];
 
+        syntaxHighlighting = true;
+
         extraPackages = with pkgs; [
           ripgrep
           fzf
@@ -24,6 +26,9 @@
         ];
 
         lsp.enable = true;
+        lsp.servers.nil = {
+          nix.autoArchive = true;
+        };
         treesitter = {
           enable = true;
           indent.enable = false;
@@ -35,8 +40,11 @@
         languages = {
           enableFormat = true;
           enableTreesitter = true;
+          enableDAP = true;
 
           bash.enable = true;
+          docker.enable = true;
+          fish.enable = true;
           hcl.enable = true;
           markdown = {
             enable = true;
@@ -49,6 +57,15 @@
             extensions.crates-nvim.enable = true;
           };
           go.enable = true;
+          yaml.enable = true;
+          toml.enable = true;
+          tex.enable = true;
+          sql.enable = true;
+          html.enable = true;
+          css.enable = true;
+          json.enable = true;
+          typescript.enable = true;
+          
         };
 
         statusline.lualine.enable = true;
