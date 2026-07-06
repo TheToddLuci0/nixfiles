@@ -7,6 +7,13 @@
         viAlias = true;
         vimAlias = true;
 
+        options.shiftwidth = 2;
+        # This doesn't prevent folding, it just doesn't automatically fold everything on load
+        # https://stackoverflow.com/a/79405264
+        options.foldenable = false;
+        # Set the default to a high level so we don't fold everything if we try to fold once
+        options.foldlevel = 99;
+
         # Keymappings
         keymaps = [
           {
@@ -14,6 +21,21 @@
             mode = "n";
             action = ":Neotree toggle<CR>";
             desc = "Toggle Neotree";
+          }
+          {
+            # For some reason, this isn't getting loaded into whichkey by default. It exists once you run `:Cheatsheet` once.
+            # TODO: Figure out how to load it before whichkey
+            key = "<leader>?";
+            mode = "n";
+            action = ":Cheatsheet<CR>";
+            desc = "Search for keybinds in Telescope";
+          }
+          {
+            key = "<ESC>"; # :tnoremap <Esc> <C-\><C-n>
+            mode = "t";
+            action = "<C-\\><C-n>";
+            desc = "Exit terminal mode";
+
           }
         ];
 
@@ -31,7 +53,8 @@
         };
         treesitter = {
           enable = true;
-          indent.enable = false;
+          fold = true;
+          # indent.enable = false;
           # indent.disable = [ "nix" ]; # Possibly needs replaces with vim.treesitter.indent.enable = false
         };
 
@@ -78,6 +101,8 @@
 
         # Friendly little helper window for remembering kebinds
         binds.whichKey.enable = true;
+        # telescope search. Use `<leader>?` to trigger
+        binds.cheatsheet.enable = true;
         mini.icons.enable = true; # Used by a couple things, just icons
 
         # https://github.com/NotAShelf/nvf/issues/1312#issuecomment-3717096367
@@ -92,6 +117,9 @@
           # Highlight things we curse over
           nvim-cursorline.enable = true;
         };
+
+        # Better terminal
+        terminal.toggleterm.enable = true;
 
         # Pretty notifications, top left. More important things go here
         notify.nvim-notify.enable = true;
