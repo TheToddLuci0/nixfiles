@@ -39,11 +39,12 @@ in {
 
     # Disable unneeded packages
     # Took a list of all installed, commented the ones to keep
+    # https://www.reddit.com/r/NixOS/comments/fsummx/how_to_list_all_installed_packages_on_nixos/
     environment.gnome.excludePackages = with pkgs; [
       # gnome-backgrounds-47.0
       # gnome-bluetooth-47.1
       # gnome-bluetooth-47.1-man
-      # gnome-browser-connector-42.1
+      gnome-browser-connector
       # gnome-calculator-47.1
       gnome-calendar
       # gnome-characters-47.0
@@ -73,11 +74,15 @@ in {
       gnome-tour
       # gnome-user-docs-47.2
       # gnome-user-share-47.2
-      # gnome-weather-47.0
+      gnome-weather
+      epiphany
+      simple-scan
+      snapshot
     ];
     services.gnome = {
       # Disable "core services" that are not, in fact, core
       gnome-online-accounts.enable = false;
+      gnome-remote-desktop.enable = false;
     };
     # gnome email client
     programs.geary.enable = false;
