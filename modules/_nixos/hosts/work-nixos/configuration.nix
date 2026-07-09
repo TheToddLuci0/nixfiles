@@ -120,7 +120,7 @@
     python3
     gh
     usbutils
-    protonvpn-gui
+    proton-vpn
     rustup
   ];
 
