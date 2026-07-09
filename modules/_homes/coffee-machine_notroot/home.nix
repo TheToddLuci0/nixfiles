@@ -216,4 +216,11 @@
   programs.direnv-instant.enable = true;
 
   programs.kitty.enable = true;
+
+  # Add these thing to the autostart, so they start on login
+  xdg.autostart.entries = [
+    # I would like to have this there
+    "${pkgs.proton-vpn}/share/applications/proton.vpn.app.gtk.desktop"
+  ];
+
 }
