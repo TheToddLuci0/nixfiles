@@ -65,7 +65,8 @@
 
     # Notes
     obsidian
-    logseq # Some of my older stuff (notably, ARTE notes) are in logseq apparently.
+    # Logseq currently has a vulnerable dep, and I don't really use it.
+    # logseq # Some of my older stuff (notably, ARTE notes) are in logseq apparently.
 
     # gnome shell
     gnomeExtensions.extension-list
@@ -171,6 +172,7 @@
     signing.format = "openpgp";
     settings = {
       core.excludesfile = "~/.gitignore_global";
+      init.defaultBranch = "main";
       user.name = "E26D48B308C7C1C39CD3C3E686B35D9789EBE4A5";
       user.email = "thetoddluci0@pm.me";
       push = {

@@ -49,6 +49,7 @@
             extensions.crates-nvim.enable = true;
           };
           go.enable = true;
+          typescript.enable = true;
         };
 
         statusline.lualine.enable = true;
