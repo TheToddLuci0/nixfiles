@@ -12,6 +12,7 @@
   # Enable custom roles
   ttl0.roles = {
     pentest.enable = true;
+    dev.enable = true;
   };
 
   # Tell nixos that we're on a vmware vm

@@ -17,6 +17,7 @@ in {
       gnumake
       rustup
       gcc
+      bacon
     ];
   };
 }
