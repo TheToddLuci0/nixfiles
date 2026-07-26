@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs.nvf = {
     enable = true;
+    defaultEditor = true;
     settings = {
       vim = {
         # Enable the aliases so I don't have to remember wtf an nvim is
