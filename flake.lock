@@ -408,22 +408,6 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
-    "nixpkgs-gns3-255": {
-      "locked": {
-        "lastModified": 1768850980,
-        "narHash": "sha256-nWQqRMheXF3BotqA7l619eUfmWNqIU9oqwncmrXZbYU=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "01951bed8cbe0ca5607a9651f2544b260963ec76",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "01951bed8cbe0ca5607a9651f2544b260963ec76",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1782614948,
@@ -558,7 +542,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-rocksmith": "nixos-rocksmith",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-gns3-255": "nixpkgs-gns3-255",
         "nvf": "nvf",
         "stylix-unstable": "stylix-unstable",
         "treefmt-nix": "treefmt-nix_2"
