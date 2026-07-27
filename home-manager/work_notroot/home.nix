@@ -138,6 +138,10 @@
           "user-theme@gnome-shell-extensions.gcampax.github.com"
         ];
       };
+      "org/gnome/desktop/wm/keybindings" = {
+        switch-windows = ["<Alt>Tab"];
+        switch-windows-backward = ["<Shift><Alt>Tab"];
+      };
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
       };
