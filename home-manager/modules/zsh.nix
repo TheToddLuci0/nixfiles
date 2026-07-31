@@ -7,6 +7,7 @@
   config = lib.mkIf config.programs.zsh.enable {
     home.packages = with pkgs; [
       zsh-nix-shell
+      grc
     ];
 
     programs.zsh = {
@@ -48,7 +49,9 @@
 
         # Load nix things
         source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
-
+        
+        # Color plz
+        [[ -s ${pkgs.grc}/etc/grc.zsh ]] && source ${pkgs.grc}/etc/grc.zsh
       '';
 
       oh-my-zsh = {
@@ -56,7 +59,6 @@
         # custom = "$HOME/.config/zsh-custom";
         enable = true;
         plugins = [
-          #          "zsh-nix-shell"
           "git"
           "1password"
           "aws"
