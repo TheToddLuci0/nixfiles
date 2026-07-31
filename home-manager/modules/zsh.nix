@@ -19,8 +19,6 @@
       };
       autosuggestion.enable = true;
       shellAliases = {
-        ll = "ls -laFh";
-        la = "ls -A";
         grep = "grep --color=auto";
         diff = "diff --color=auto";
         open = "xdg-open";
