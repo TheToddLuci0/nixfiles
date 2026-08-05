@@ -1,26 +1,21 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, ...}: {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ../../window-managers/default.nix
-    ../../roles
-  ];
+
+{ config, pkgs, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # Support NFS
-  boot.supportedFilesystems = ["nfs"];
-
-  boot.initrd.luks.devices."luks-69102f03-9858-4c57-941c-9662f3041762".device = "/dev/disk/by-uuid/69102f03-9858-4c57-941c-9662f3041762";
-  networking.hostName = "spaghetti-llc"; # Define your hostname.
+  boot.initrd.luks.devices."luks-108479e3-c6a6-4211-a8ce-c0b0a8b40553".device = "/dev/disk/by-uuid/108479e3-c6a6-4211-a8ce-c0b0a8b40553";
+  networking.hostName = "toaster-oven"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -48,25 +43,11 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  # services.displayManager.gdm.enable = true;
-  # services.desktopManager.gnome.enable = true;
-  ttl0.windowManagers.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  #services.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -82,16 +63,15 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
+  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.notroot = {
+  users.users."notroot" = {
     isNormalUser = true;
-    description = "notroot";
-    extraGroups = ["networkmanager" "wheel" "audio" "gamemode" "rtkit" "docker"];
-    shell = pkgs.fish;
+    description = "todd";
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      #  thunderbird
+    #  thunderbird
     ];
   };
 
@@ -101,22 +81,13 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Enable flakes
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    git
     wget
-    # onlykey-agent
-    onlykey
-    protonvpn-gui
-    wireguard-tools
+    kitty
+    nh
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -144,56 +115,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 
-  # Nvidia
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = ["nvidia" "modesetting"];
-
-  # Password Managers
-  programs._1password.enable = true;
-  programs._1password-gui.enable = true;
-  programs._1password-gui.polkitPolicyOwners = ["notroot"];
-
-  # Automate garbage collection
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly";
-  nix.gc.options = "--delete-older-than 30d";
-
-  # Automatically update nixpkgs
-  system.autoUpgrade.enable = true;
-
-  # ZSH over BASH
-  programs.zsh.enable = true;
-  programs.fish.enable = true;
-  # https://wiki.nixos.org/wiki/Command_Shell#Using_Flakes
-  programs.command-not-found.enable = false;
-  users.defaultUserShell = pkgs.fish;
-  environment.shells = with pkgs; [fish zsh bash];
-
-  # Enable custom roles
-  ttl0.roles = {
-    gaming.enable = true;
-    dev.enable = true;
-  };
-
-  programs.nh = {
-    enable = true;
-    flake = "/home/notroot/git/nixfiles/";
-  };
-
-  # nix.nixPath = [ "/home/notroot/git/nixfiles/" ];
-
-  hardware.onlykey.enable = true;
-
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
-
-  # Moved here since this is the only place that actually has the flake imported
-  programs.steam.rocksmithPatch.enable = true; # https://github.com/theNizo/linux_rocksmith/blob/main/guides/setup/nixos/flake.md
 }

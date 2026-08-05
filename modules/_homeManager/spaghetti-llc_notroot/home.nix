@@ -6,7 +6,7 @@
   ];
 
   nixpkgs.overlays = [
-    (import ../../packages)
+    (import ../../../packages)
   ];
 
   # Custom roles
@@ -61,11 +61,12 @@
 
     # Pipx and magic shell completions
     python312Packages.argcomplete
-    pipx
+    # pipx
 
     # Notes
     obsidian
-    logseq # Some of my older stuff (notably, ARTE notes) are in logseq apparently.
+    # Logseq currently has a vulnerable dep, and I don't really use it.
+    # logseq # Some of my older stuff (notably, ARTE notes) are in logseq apparently.
 
     # gnome shell
     gnomeExtensions.extension-list
@@ -76,8 +77,8 @@
     proton-vpn
 
     # I like to have fun
-    # cataclysm-dda
-    # archipelago
+    cataclysm-dda
+    archipelago
     # TODO Setup sops or something with the creds override to avoid having to nix prefetch
     #factorio
 
@@ -171,6 +172,7 @@
     signing.format = "openpgp";
     settings = {
       core.excludesfile = "~/.gitignore_global";
+      init.defaultBranch = "main";
       user.name = "E26D48B308C7C1C39CD3C3E686B35D9789EBE4A5";
       user.email = "thetoddluci0@pm.me";
       push = {
@@ -179,13 +181,13 @@
     };
   };
 
-  home.file.".gitignore_global" = {
-    text = ''
-      # Direnv stuff
-      .direnv
-      .envrc
-    '';
-  };
+  # home.file.".gitignore_global" = {
+  #   text = ''
+  #     # Direnv stuff
+  #     .direnv
+  #     .envrc
+  #   '';
+  # };
 
   programs.vscode = {
     enable = true;
@@ -195,25 +197,25 @@
   };
 
   programs.gpg.enable = true;
-  # programs.gpg.publicKeys = [
-  #   {
-  #     source = ../assets/gpg/work_pubkey.gpg;
-  #     trust = "ultimate";
-  #   }
-  # ];
+  programs.gpg.publicKeys = [
+    {
+      source = ../assets/gpg/work_pubkey.gpg;
+      trust = "ultimate";
+    }
+  ];
 
-  services.gpg-agent = {
-    enable = true;
-    pinentry.package = pkgs.pinentry-gnome3;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
+  # services.gpg-agent = {
+  #   enable = true;
+  #   pinentry.package = pkgs.pinentry-gnome3;
+  #   enableBashIntegration = true;
+  #   enableZshIntegration = true;
+  # };
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-  programs.direnv-instant.enable = true;
-
-  programs.kitty.enable = true;
+  # programs.direnv = {
+  #   enable = true;
+  #   nix-direnv.enable = true;
+  # };
+  # programs.direnv-instant.enable = true;
+  #
+  # programs.kitty.enable = true;
 }

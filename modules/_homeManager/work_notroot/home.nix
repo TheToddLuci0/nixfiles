@@ -10,7 +10,7 @@
   ];
 
   nixpkgs.overlays = [
-    (import ../../packages)
+    (import ../../../packages)
   ];
 
   ttl0.roles.azure.enable = true;
@@ -63,7 +63,7 @@
     keeperpasswordmanager
     # Pipx and magic shell completions
     python312Packages.argcomplete
-    pipx
+    # pipx
     uv
     nh
 
@@ -183,13 +183,13 @@
     };
   };
 
-  home.file.".gitignore_global" = {
-    text = ''
-      # Direnv stuff
-      .direnv
-      .envrc
-    '';
-  };
+  # home.file.".gitignore_global" = {
+  #   text = ''
+  #     # Direnv stuff
+  #     .direnv
+  #     .envrc
+  #   '';
+  # };
 
   programs.vscode = {
     enable = true;
@@ -210,12 +210,12 @@
     }
   ];
 
-  services.gpg-agent = {
-    enable = true;
-    pinentry.package = pkgs.pinentry-gnome3;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
+  # services.gpg-agent = {
+  #   enable = true;
+  #   pinentry.package = pkgs.pinentry-gnome3;
+  #   enableBashIntegration = true;
+  #   enableZshIntegration = true;
+  # };
 
   programs.ssh = {
     enable = true;
