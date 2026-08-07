@@ -67,7 +67,7 @@
           "org/gtk/settings/file-chooser" = {
             clock-format = "12h";
           };
-          "org/gnome/desktop/wm/keybindins" = {
+          "org/gnome/desktop/wm/keybindings" = {
             switch-windows = [ "<Alt>Tab" ];
             switch-windows-backwards = [ "<Shift><Alt>Tab" ];
           };
@@ -98,7 +98,7 @@
     };
     provides.work-nixos = {
       homeManager = { pkgs, ... }: {
-        imports = [ ../_homeManager/work_notroot/home.nix];
+        imports = [ ../_homeManager/work_notroot/home.nix ];
       };
     };
     provides.spaghetti-llc = {

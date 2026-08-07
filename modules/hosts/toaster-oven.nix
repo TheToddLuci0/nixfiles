@@ -11,6 +11,8 @@
       den.batteries.hostname
       den.aspects.gnome
       den.aspects.dev
+      den.aspects.dev.docker
+      den.aspects.gaming
      ];
     nixos = {pkgs, ...}:{
       imports = [
