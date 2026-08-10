@@ -32,21 +32,6 @@
             name = "fish-you-should-use";
             inherit (pkgs.fishPlugins.fish-you-should-use) src;
           }
-	  # TODO
-	  # These two should probably move to an "aws" aspect that does a cross-aspect provides
-          {
-            name = "fish-aws";
-            inherit (pkgs.fishPlugins.aws) src;
-          }
-          {
-            name = "omf-plugin-asp";
-            src = pkgs.fetchFromGitHub {
-              owner = "m-radzikowski";
-              repo = "omf-plugin-asp";
-              rev = "d3a154dc9511e93907160393cb96c90fb097e736";
-              sha256 = "DBxJ0d3HWpBsrCKbyXjQiyWN9Cgs1Lat7EkKaodv0RY=";
-            };
-          }
         ];
         interactiveShellInit = ''
           set fish_greeting # Disable welcome message
@@ -55,7 +40,7 @@
           end
         '';
         shellAbbrs = {
-          ll = "ls -laFh";
+          # ll = "ls -laFh";
           la = "ls -A";
           grep = "grep --color=auto";
           diff = "diff --color=auto";
@@ -73,8 +58,6 @@
         enableFishIntegration = true;
         enableTransience = true;
       };
-
-
 
     };
 

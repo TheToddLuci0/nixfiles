@@ -13,6 +13,8 @@
       den.aspects.dev
       den.aspects.dev.docker
       den.aspects.gaming
+      den.aspects.flipper
+      den.aspects.nix-locate
      ];
     nixos = {pkgs, ...}:{
       imports = [
@@ -23,6 +25,10 @@
       programs.nh.flake = "/home/notroot/git/nixfiles";
       services.fprintd.enable = true;
       hardware.onlykey.enable = true;
+      networking.wg-quick.interfaces.wg0 = {
+        configFile = "/etc/nixos/files/wireguard/wg0.conf";
+        autostart = false;
+      };
     };
   };
 }

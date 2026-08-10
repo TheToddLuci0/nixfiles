@@ -9,6 +9,7 @@
       den.aspects.fish
       den.aspects.nvf
       den.aspects.dev
+      den.aspects.nix-locate
     ];
 
     homeManager = { pkgs, ... }: {
@@ -30,13 +31,15 @@
       programs.git = {
         enable = true;
         signing = {
-          key = pkgs.lib.mkDefault "";
+          key = pkgs.lib.mkDefault "E26D48B308C7C1C39CD3C3E686B35D9789EBE4A5";
           signByDefault = true;
           format = "openpgp";
         };
         settings = {
           core.excludesfile = "~/.gitignore_global";
           init.defaultBranch = "main";
+          user.name = "E26D48B308C7C1C39CD3C3E686B35D9789EBE4A5";
+          user.email = "thetoddluci0@pm.me";
           push.autoSetupRemote = true;
         };
       };

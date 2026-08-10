@@ -20,6 +20,13 @@
           };
         };
       };
+
+      # Setup things to use kitty since we have the power
+      programs.ripgrep.arguments = ["--hyperlink-format=kitty"];
+      home.shellAliases = {
+        # `enableGitIntegration` above sets the diff kitten as diftool, this prevents rsi
+        gdt = "git difftool --dir-diff --no-symlinks";
+      };
     };
   };
 }

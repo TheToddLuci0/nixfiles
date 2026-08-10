@@ -1,7 +1,11 @@
 { den, ... }: {
 
   den.default = {
-    includes = [den.aspects.stylix];
+    # Things that belong on all hosts I manage, no matter what.
+    # This should be a pretty slim list, and mainly be things that are needed to bootstrap
+    # a new system or recover one that gets particularly messed up.
+    includes = [ den.aspects.stylix ];
+    
     nixos = { pkgs, lib, ... }: {
       programs.nh = {
         enable = true;
@@ -9,8 +13,16 @@
       };
       environment.systemPackages = with pkgs; [
         git
+        ripgrep
       ];
+      programs.bat = {
+        enable = true;
+        settings = {
+          theme = "TwoDark";
+        };
+      };
     };
+
     homeManager = {
       programs.git.enable = true;
       programs.starship.enable = true;
