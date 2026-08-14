@@ -175,8 +175,8 @@
     signing.signByDefault = true;
     settings = {
       core.excludesfile = "~/.gitignore_global";
-      user.namw = "TheToddLuci0";
-      user.email = "26094248+TheToddLuci0@users.noreply.github.com";
+      user.name = lib.mkForce "TheToddLuci0";
+      user.email = lib.mkForce "26094248+TheToddLuci0@users.noreply.github.com";
       push = {
         autoSetupRemote = true;
       };
