@@ -8,6 +8,8 @@
         viAlias = true;
         vimAlias = true;
 
+        hideSearchHighlight = true;
+
         options = {
           shiftwidth = 2;
           # This doesn't prevent folding, it just doesn't automatically fold everything on load
@@ -86,7 +88,11 @@
             enable = true;
             extensions.markview-nvim.enable = true;
           };
-          python.enable = true;
+          python = {
+            enable = true;
+            format.type = ["ruff"];
+            lsp.servers = ["ruff"];
+          };
           nix.enable = true;
           rust = {
             enable = true;
