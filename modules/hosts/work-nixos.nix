@@ -1,6 +1,12 @@
 {den, ...}: {
 
   den.aspects.work-nixos = {
-    nixos.imports = [../_nixos/hosts/work-nixos/configuration.nix];
+    nixos = {pkgs, ...}:{
+      imports = [../_nixos/hosts/work-nixos/configuration.nix];
+        environment.systemPackages = [
+          pkgs.s5cmd
+          pkgs.pv
+        ];
+    };
   };
 }
