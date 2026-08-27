@@ -40,7 +40,7 @@
           end
         '';
         shellAbbrs = {
-          # ll = "ls -laFh";
+          # ll = "ls -laF";
           la = "ls -A";
           grep = "grep --color=auto";
           diff = "diff --color=auto";
