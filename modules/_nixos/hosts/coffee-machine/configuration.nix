@@ -16,6 +16,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+    # Enable dual-booting
+  boot.loader.systemd-boot.windows = {
+    "windows" = {
+      title = "Windows";
+      efiDeviceHandle = "HD1b";
+      sortKey = "y_windows";
+    };
+  };
+
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
