@@ -126,7 +126,7 @@
     wget
     # onlykey-agent
     onlykey
-    protonvpn-gui
+    proton-vpn
     wireguard-tools
   ];
 
