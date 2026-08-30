@@ -53,5 +53,7 @@ jobs:
           TARGET: ${{ matrix.target }}
         run: nix build "$TARGET"
       - name: Upload to cache
+        env:
+          ATTIC_CACHE: ${{ vars.ATTIC_CACHE }}
         run: |
           attic push $ATTIC_CACHE result/
