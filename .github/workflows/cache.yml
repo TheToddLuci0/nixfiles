@@ -46,13 +46,12 @@ jobs:
           ATTIC_URL: ${{ secrets.ATTIC_URL }}
           ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
         run: |
-        
+          nix profile add nixpkgs#attic-client
+          attic login default $ATTIC_URL $ATTIC_TOKEN
       - name: Build target
         env:
           TARGET: ${{ matrix.target }}
         run: nix build "$TARGET"
       - name: Upload to cache
         run: |
-          nix profile add nixpkgs#attic-client
-          attic login default $ATTIC_URL $ATTIC_TOKEN
           attic push $ATTIC_CACHE result/
