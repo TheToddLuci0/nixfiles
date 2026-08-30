@@ -1,0 +1,58 @@
+name: ci
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  define-matrix:
+    runs-on: ubuntu-latest
+    outputs: 
+      targets: ${{ steps.flake-outputs.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: cachix/install-nix-action@v31
+      - name: Set targets
+        shell: python
+        id: flake-outputs
+        run: |
+          import subprocess
+          import json
+          import os
+          res = json.loads(subprocess.check_output(["nix",  "flake", "show", "--json"]))
+          output = []
+          for i in res['packages']['x86_64-linux'].keys():
+            output.append(f".#{i}")
+          for host in res['nixosConfigurations'].keys():
+            output.append(f".#nixosConfigurations.{host}")
+          hm = json.loads(subprocess.check_output(["nix", "eval", ".#homeConfigurations", "--apply", "hconf: builtins.attrNames hconf", "--json"]))
+          for home in hm:
+            output.append(f".#homeConfigurations.{home}")
+          with open(os.environ['GITHUB_OUTPUT'], 'w') as f:
+            f.write("targets=" + json.dumps(output))
+    
+  build-outputs:
+    runs-on: ubuntu-latest
+    needs: 
+      - define-matrix
+    strategy:
+      matrix:
+        target: ${{ fromJson(needs.define-matrix.outputs.targets) }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: cachix/install-nix-action@v31
+      - name: Setup attic
+        env:
+          ATTIC_URL: ${{ secrets.ATTIC_URL }}
+          ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
+        run: |
+        
+      - name: Build target
+        env:
+          TARGET: ${{ matrix.target }}
+        run: nix build "$TARGET"
+      - name: Upload to cache
+        run: |
+          nix profile add nixpkgs#attic-client
+          attic login default $ATTIC_URL $ATTIC_TOKEN
+          attic push $ATTIC_CACHE result/

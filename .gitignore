@@ -19,3 +19,6 @@ result-*
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# act
+.secrets
