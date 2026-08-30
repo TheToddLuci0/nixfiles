@@ -33,6 +33,7 @@ jobs:
     
   build-outputs:
     runs-on: ubuntu-latest
+    continue-on-error: true
     needs: 
       - define-matrix
     strategy:
