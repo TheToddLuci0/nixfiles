@@ -24,10 +24,10 @@ jobs:
           for i in res['packages']['x86_64-linux'].keys():
             output.append(f".#{i}")
           for host in res['nixosConfigurations'].keys():
-            output.append(f".#nixosConfigurations.{host}")
+            output.append(f".#nixosConfigurations.{host}.config.system.build.toplevel")
           hm = json.loads(subprocess.check_output(["nix", "eval", ".#homeConfigurations", "--apply", "hconf: builtins.attrNames hconf", "--json"]))
           for home in hm:
-            output.append(f".#homeConfigurations.{home}")
+            output.append(f".#homeConfigurations.{home}.config.home.activationPackage")
           with open(os.environ['GITHUB_OUTPUT'], 'w') as f:
             f.write("targets=" + json.dumps(output))
     
