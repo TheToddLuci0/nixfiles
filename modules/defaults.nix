@@ -7,6 +7,7 @@
     includes = [ den.aspects.stylix ];
     
     nixos = { pkgs, lib, ... }: {
+      nix.settings.trusted-users = ["@wheel"];
       programs.nh = {
         enable = true;
         flake = lib.mkDefault "/home/notroot/git/nixfiles";
