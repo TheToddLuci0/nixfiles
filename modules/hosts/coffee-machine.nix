@@ -4,6 +4,8 @@
     nixos = {pkgs, ...}: {
       imports = [../_nixos/hosts/coffee-machine/configuration.nix];
 
+      services.fwupd.enable = true;
+
       programs.steam = {
         enable = true;
         remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play

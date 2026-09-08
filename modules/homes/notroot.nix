@@ -82,7 +82,7 @@
         icons = "auto";
       };
       home.shellAliases = {
-        ll = "ls -laF";
+        ll = "eza -lA";
       };
       home.file.".config/eza/theme.yml".text = pkgs.lib.readFile ../../assets/eza_onedark.yml;
     };

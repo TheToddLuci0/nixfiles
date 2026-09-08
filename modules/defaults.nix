@@ -4,7 +4,10 @@
     # Things that belong on all hosts I manage, no matter what.
     # This should be a pretty slim list, and mainly be things that are needed to bootstrap
     # a new system or recover one that gets particularly messed up.
-    includes = [ den.aspects.stylix den.aspects.attic.client];
+    includes = [ 
+      den.aspects.stylix den.aspects.attic.client
+      (den.batteries.insecure ["nwjs-0.102.1"])
+    ];
     
     nixos = { pkgs, lib, ... }: {
       nix.settings.trusted-users = ["@wheel"];
