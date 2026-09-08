@@ -57,7 +57,7 @@
     # '')
 
     # Pinentry for gnome
-    gcr
+    gcr_4
 
     python314Packages.argcomplete
     # Notes

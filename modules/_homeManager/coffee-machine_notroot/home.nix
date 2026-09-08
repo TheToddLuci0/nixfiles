@@ -57,7 +57,7 @@
     # '')
 
     # Pinentry for gnome
-    gcr
+    gcr_4
 
     # Pipx and magic shell completions
     python312Packages.argcomplete

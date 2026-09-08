@@ -58,7 +58,7 @@
     # '')
 
     # Pinentry for gnome
-    gcr
+    gcr_4
 
     keeperpasswordmanager
     # Pipx and magic shell completions

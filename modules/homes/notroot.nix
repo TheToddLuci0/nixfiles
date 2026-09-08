@@ -16,7 +16,7 @@
       home.packages = with pkgs; [
         # TODO: Split out gnome things
         # Pinentry for gnome
-        gcr
+        gcr_4
         gnomeExtensions.extension-list
         signal-desktop
         ripgrep
