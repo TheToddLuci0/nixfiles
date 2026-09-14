@@ -114,7 +114,12 @@
 
         statusline.lualine.enable = true;
         telescope.enable = true;
-        autocomplete.blink-cmp.enable = true;
+        autocomplete.blink-cmp = {
+          enable = true;
+          setupOpts = {
+            completion.list.selection.preselect = false;
+          };
+        };
 
         git = {
           enable = true;
