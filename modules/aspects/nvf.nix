@@ -1,4 +1,9 @@
-{ den, inputs, ... }:
+{
+  den,
+  inputs,
+  lib,
+  ...
+}:
 let
 
   nvfConfig = {
@@ -6,7 +11,6 @@ let
       # Enable the aliases so I don't have to remember wtf an nvim is
       viAlias = true;
       vimAlias = true;
-
       hideSearchHighlight = true;
 
       options = {
@@ -117,7 +121,25 @@ let
 
       statusline.lualine.enable = true;
       telescope.enable = true;
-      autocomplete.blink-cmp.enable = true;
+      autocomplete.blink-cmp = {
+        enable = true;
+        setupOpts = {
+          completion.list.selection.preselect = false;
+          completion.menu.draw = {
+            components.label = (
+              lib.mkLuaInline ''
+                {
+                  text = function(ctx)
+                      return require("colorful-menu").blink_components_text(ctx)
+                  end,
+                  highlight = function(ctx)
+                      return require("colorful-menu").blink_components_highlight(ctx)
+                  end,
+                }''
+            );
+          };
+        };
+      };
 
       git = {
         enable = true;
@@ -190,6 +212,7 @@ let
       ui = {
         borders.enable = true;
         noice.enable = true;
+        colorful-menu-nvim.enable = true;
       };
     };
   };

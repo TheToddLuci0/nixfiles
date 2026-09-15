@@ -6,7 +6,6 @@
     ./kitty.nix
     ./fish.nix
     ./starship.nix
-    ./nvf.nix
     ./azure.nix
   ];
 }
