@@ -6,6 +6,7 @@
         environment.systemPackages = [
           pkgs.s5cmd
           pkgs.pv
+          pkgs.tor-browser
         ];
     };
   };
