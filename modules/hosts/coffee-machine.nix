@@ -4,6 +4,10 @@
     nixos = {pkgs, ...}: {
       imports = [../_nixos/hosts/coffee-machine/configuration.nix];
 
+      environment.systemPackages = [
+        pkgs.tor-browser
+      ];
+
       services.fwupd.enable = true;
 
       programs.steam = {
