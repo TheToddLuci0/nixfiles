@@ -4,7 +4,7 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
-    den.url = "github:denful/den";
+    den.url = "github:denful/den?ref=latest";
     direnv-instant = {
       url = "github:Mic92/direnv-instant";
       inputs.nixpkgs.follows = "nixpkgs";
