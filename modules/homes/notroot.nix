@@ -84,7 +84,7 @@
       home.shellAliases = {
         ll = "eza -lA";
       };
-      home.file.".config/eza/theme.yml".text = pkgs.lib.readFile ../../assets/eza_onedark.yml;
+      # home.file.".config/eza/theme.yml".text = pkgs.lib.readFile ../../assets/eza_onedark.yml;
     };
 
     provides.to-hosts = {

@@ -9,5 +9,5 @@
     git = true;
     icons = "auto";
   };
-  home.file.".config/eza/theme.yml".text = pkgs.lib.readFile ../assets/eza/one_dark.yml;
+  # home.file.".config/eza/theme.yml".text = pkgs.lib.readFile ../assets/eza/one_dark.yml;
 }

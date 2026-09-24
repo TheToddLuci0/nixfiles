@@ -25,6 +25,9 @@
           theme = "TwoDark";
         };
       };
+      fonts.packages = [
+        pkgs.nerd-fonts.symbols-only
+      ];
     };
 
     homeManager = {
