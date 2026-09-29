@@ -175,6 +175,7 @@ let
 
       # Better terminal
       terminal.toggleterm.enable = true;
+      terminal.toggleterm.lazygit.enable = true;
 
       # Pretty notifications, top left. More important things go here
       notify.nvim-notify.enable = true;
@@ -207,6 +208,20 @@ let
             };
           };
         };
+      };
+
+      session.nvim-session-manager = {
+        enable = true;
+        setupOpts = {
+          autoload_mode = "CurrentDir";
+        };
+      };
+
+      snippets.luasnip.enable = true;
+
+      tabline.nvimBufferline = {
+        enable = true;
+        mappings.closeCurrent = "<leader>bd";
       };
 
       ui = {
