@@ -73,6 +73,9 @@
         enable = true;
         systemd.enable = true;
       };
+      home.packages = [
+        pkgs.xwayland-satellite # xwayland support
+      ];
     };
 
   };
