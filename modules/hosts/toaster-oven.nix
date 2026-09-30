@@ -9,6 +9,7 @@
       den.aspects.gaming
       den.aspects.flipper
       den.aspects.nix-locate
+      den.aspects.niri
      ];
     nixos = {pkgs, ...}:{
       imports = [

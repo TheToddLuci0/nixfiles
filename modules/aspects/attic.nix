@@ -2,19 +2,19 @@
 
   den.aspects.attic.client = {
     nixos = {
-      nix.settings.substituters = ["https://ttl0cache.dev/default"];
-      nix.settings.trusted-public-keys = ["default:4/STs2YRgVgw7ReD1eeQQBwZwIZUjOjIJirGahS7pEg="];
+      nix.settings.substituters = [ "https://ttl0cache.dev/default" ];
+      nix.settings.trusted-public-keys = [ "default:4/STs2YRgVgw7ReD1eeQQBwZwIZUjOjIJirGahS7pEg=" ];
     };
-    homeManager = { pkgs, ... }: {
+    homeManager = { pkgs, config, ... }: {
       programs.attic-client = {
         enable = true;
-        watchStore = ["ttl0cache:default"];
+        watchStore = [ "ttl0cache:default" ];
         settings = {
           default-cache = "ttl0cache";
           servers.ttl0cache = {
             endpoint = "https://ttl0cache.dev";
             #TODO: Setup opnix or something.
-            token-file = "/run/secrets/attic-token";
+            token-file = "${config.xdg.dataHome}/attic/token";
           };
         };
       };
