@@ -64,6 +64,10 @@
       # programs.waybar.enable = true;
       # programs.waybar.systemd.enable = false;
 
+      # Explicit enable so stylix theming get's pulled.
+      # A couple places pull it in via pkgs, but that doesn't
+      # write the conf
+      programs.rofi.enable = true;
       services.gpg-agent.pinentry.package = pkgs.pinentry-rofi;
       programs.noctalia = {
         enable = true;
