@@ -2,12 +2,14 @@
 
   den.aspects.kitty = {
 
-    homeManager = { pkgs, ... }: {
+    homeManager = { lib, pkgs, ... }: {
       programs.kitty = {
         enable = true;
         enableGitIntegration = true;
         settings = {
           enable_audio_bell = false;
+          # background_opacity = lib.mkForce "0.75";
+          dynamic_background_opacity = true;
         };
         keybindings = {
           "f1" = "create_marker";

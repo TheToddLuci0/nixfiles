@@ -60,10 +60,11 @@
         };
       };
       programs.kitty.enable = true;
-      services.polkit-gnome.enable = true;
+      # services.polkit-gnome.enable = true;
       # programs.waybar.enable = true;
       # programs.waybar.systemd.enable = false;
 
+      services.gpg-agent.pinentry.package = pkgs.pinentry-rofi;
       programs.noctalia = {
         enable = true;
         systemd.enable = true;

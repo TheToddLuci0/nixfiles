@@ -43,6 +43,11 @@
         # Wallpaper
         image = lib.mkDefault ../../assets/wallpapers/default.png; # TODO: Is there a better way to resolve this path?
 
+        opacity = {
+          applications = 0.78;
+          desktop = 0.78;
+          popups = 0.78;
+        };
       };
       # TODO: Does this belong in a provides or somethings?
       # If we're not using gnome, will this cause gnome things to be pulled in?

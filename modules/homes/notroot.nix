@@ -17,8 +17,8 @@
       home.packages = with pkgs; [
         # TODO: Split out gnome things
         # Pinentry for gnome
-        gcr_4
-        gnomeExtensions.extension-list
+        # gcr_4
+        # gnomeExtensions.extension-list
         signal-desktop
         ripgrep
         uv
@@ -47,7 +47,7 @@
       programs.gpg.enable = true;
       services.gpg-agent.enable = true;
       # TODO: Split out gnome things
-      services.gpg-agent.pinentry.package = pkgs.pinentry-gnome3;
+      # services.gpg-agent.pinentry.package = pkgs.pinentry-gnome3;
 
       dconf = {
         enable = true;
