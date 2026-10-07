@@ -70,11 +70,11 @@
     },
     "den": {
       "locked": {
-        "lastModified": 1781621963,
-        "narHash": "sha256-8Mntz200pNVIF2l8twpdc4wvEFqzrlkICz2tvkfwz0s=",
+        "lastModified": 1790283496,
+        "narHash": "sha256-QTPzBJpxfetqU3u29+tQev8SlAC6EaRvHks0+FHAclY=",
         "owner": "denful",
         "repo": "den",
-        "rev": "5df0987658d6e44268abba953406480e9f066928",
+        "rev": "37eb88ce28a9e42d5b367b967a9097030ff4f665",
         "type": "github"
       },
       "original": {
@@ -257,11 +257,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790225410,
-        "narHash": "sha256-BOyZoliWfm/beS4m3FxFKlu5at6npZen1PsWtvzzihk=",
+        "lastModified": 1790275434,
+        "narHash": "sha256-9dZF1EviQA/XKCjHChddQh7skrfKnZPSqPOqEeOKW0k=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4900baf1e219645e4a2acba35723852b2091bc20",
+        "rev": "f2981148865f7390d187a91d4b1a3a7616047d6d",
         "type": "github"
       },
       "original": {
@@ -274,13 +274,13 @@
       "locked": {
         "lastModified": 1788467110,
         "narHash": "sha256-ljEMTXP/rH0tOvDzc9gzwww6KcHRPRnEHzd9lK48V7s=",
-        "owner": "vic",
+        "owner": "denful",
         "repo": "import-tree",
         "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
         "type": "github"
       },
       "original": {
-        "owner": "vic",
+        "owner": "denful",
         "repo": "import-tree",
         "type": "github"
       }
