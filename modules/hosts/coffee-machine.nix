@@ -6,6 +6,7 @@
 
       environment.systemPackages = [
         pkgs.tor-browser
+        pkgs.cifs-utils
       ];
 
       services.fwupd.enable = true;

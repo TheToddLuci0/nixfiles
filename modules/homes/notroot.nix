@@ -100,6 +100,7 @@
     provides.coffee-machine = {
       homeManager = { pkgs, ... }: {
         imports = [ ../_homeManager/coffee-machine_notroot/home.nix ];
+        home.packages = [pkgs.deezer-desktop];
       };
     };
     provides.work-nixos = {
