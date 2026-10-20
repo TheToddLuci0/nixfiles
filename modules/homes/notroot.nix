@@ -10,6 +10,7 @@
       den.aspects.nvf
       den.aspects.dev
       den.aspects.nix-locate
+      den.aspects.proton
     ];
 
     homeManager = { pkgs, ... }: {
