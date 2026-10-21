@@ -50,6 +50,11 @@
     };
     den.aspects.dev.azure = {
       homeManager = { pkgs, ... }: {
+        
+        nixpkgs.config = {
+          # https://github.com/NixOS/nixpkgs/issues/575989           problems.handlers = {
+          fabric.broken = "warn"; # or "ignore"
+        };
 
         home.packages = [
           pkgs.azure-storage-azcopy
