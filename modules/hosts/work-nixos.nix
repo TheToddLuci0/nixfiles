@@ -6,6 +6,7 @@
     ];
     nixos = {pkgs, ...}:{
       imports = [../_nixos/hosts/work-nixos/configuration.nix];
+      virtualisation.vmware.guest.enable = true;
         environment.systemPackages = [
           pkgs.s5cmd
           pkgs.pv

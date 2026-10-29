@@ -10,7 +10,7 @@
   ];
 
   # Custom roles
-  ttl0.roles.azure.enable = true;
+  # ttl0.roles.azure.enable = true;
 
   # programs.zsh.enable = true;
   programs.fish.enable = true;
