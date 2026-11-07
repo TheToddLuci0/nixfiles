@@ -85,7 +85,7 @@
     awscli2
     jq
 
-    btop
+    btop-cuda
     signal-desktop
   ];
 
