@@ -1,6 +1,7 @@
 { den, ... }: {
 
   den.aspects.coffee-machine = {
+    includes = [den.aspects.cuda];
     nixos = { lib, pkgs, ... }: {
       imports = [ ../_nixos/hosts/coffee-machine/configuration.nix ];
 
