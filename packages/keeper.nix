@@ -17,7 +17,7 @@
   pcsclite,
 }: let
   pname = "keeperpasswordmanager";
-  version = "18.4.0";
+  version = "18.6.6";
 in
   stdenv.mkDerivation rec {
     inherit pname version;
@@ -26,7 +26,7 @@ in
     # Debs only come in amd64, RPMs in x86_64
     src = fetchzip {
       url = "https://www.keepersecurity.com/desktop_electron/Linux/repo/deb/${pname}_${version}_amd64.deb";
-      hash = "sha256-PiPq0L5rso0H8Y80x7mj3HPwy0BxfuXtr7FLhNoJodo=";
+      hash = "sha256-AVPLvaIpYkyGnW6Yyrkavs45RsnPEllj+bTr5HJI8F0=";
       nativeBuildInputs = [dpkg];
     };
 
