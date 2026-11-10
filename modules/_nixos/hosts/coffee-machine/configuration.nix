@@ -209,6 +209,7 @@
   services.xserver.videoDrivers = ["nvidia" "modesetting"];
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
+  hardware.nvidia.branch = "latest";
 
   # Fan curves
   programs.coolercontrol.enable = true;

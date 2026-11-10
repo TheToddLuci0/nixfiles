@@ -267,8 +267,8 @@
           identitiesOnly = true; # Don't send all 15 keys
         }; # Hack
         "aws-vpn" = {
-          hostname = "172.29.245.16";
-          user = "ubuntu";
+          user = "openvpnas";
+          hostname = "172.29.245.51";
           # identityFile = "$HOME/.ssh/etg_pt_01.pem";
         };
         "mantis-kali" = {
