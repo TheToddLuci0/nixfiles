@@ -13,7 +13,8 @@
       den.aspects.proton
     ];
 
-    homeManager = { pkgs, ... }: {
+    homeManager = { pkgs, lib, ... }: {
+      home.uid = lib.mkDefault 1000;
       home.packages = with pkgs; [
         # TODO: Split out gnome things
         # Pinentry for gnome
@@ -101,7 +102,10 @@
     provides.coffee-machine = {
       homeManager = { pkgs, ... }: {
         imports = [ ../_homeManager/coffee-machine_notroot/home.nix ];
-        home.packages = [pkgs.deezer-desktop];
+        home.packages = [
+          pkgs.deezer-desktop
+          pkgs.vlc
+        ];
       };
     };
     provides.work-nixos = {
