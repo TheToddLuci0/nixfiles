@@ -10,6 +10,7 @@
       den.aspects.flipper
       den.aspects.nix-locate
       den.aspects.niri
+      den.aspects.notroot.provides.to-hosts
      ];
     nixos = {pkgs, ...}:{
       imports = [
