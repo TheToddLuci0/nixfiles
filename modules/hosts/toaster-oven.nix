@@ -25,6 +25,12 @@
         configFile = "/etc/nixos/files/wireguard/wg0.conf";
         autostart = false;
       };
+      programs.nh.clean = {
+        enable = true;
+        dates = "weekly";
+        # This thing has a small little disk, so let's be a bit more aggressive.
+        extraArgs = "--keep 2 --keep-since 3d --keep-one --optimize";
+      };
     };
   };
 }
